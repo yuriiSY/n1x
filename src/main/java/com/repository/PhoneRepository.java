@@ -13,7 +13,11 @@ public class PhoneRepository implements PhoneCrudRepository {
 
     @Override
     public void save(Phone phone) {
-        phones.add(phone);
+        if (phone == null) {
+            throw new IllegalArgumentException();
+        } else {
+            phones.add(phone);
+        }
     }
 
     @Override
@@ -25,7 +29,7 @@ public class PhoneRepository implements PhoneCrudRepository {
 
     @Override
     public boolean update(Phone phone) {
-        final Optional<Phone> result = findByTitle(phone.getTitle());
+        final Optional<Phone> result = findById(phone.getId());
         if (result.isEmpty()) {
             return false;
         }
