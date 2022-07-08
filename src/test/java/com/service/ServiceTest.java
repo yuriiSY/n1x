@@ -96,4 +96,14 @@ class ServiceTest {
         Assertions.assertEquals(1000.0, argument.getValue().getPrice());
     }
 
-}
+
+    @Test
+    void deletePhone_Matcher() {
+        final Phone phone = new Phone("Title", 0, 1000.0, "Model", Manufacturer.APPLE);
+        target.savePhone(phone);
+        Mockito.when(repository.delete(Mockito.argThat(s -> s.length() == 36))).thenReturn(true);
+        assertTrue(repository.delete("2b5d48b0-c174-4c08-978f-f64070f4dcdt"));
+        assertFalse(repository.delete("asdasda"));
+    }
+
+    }
