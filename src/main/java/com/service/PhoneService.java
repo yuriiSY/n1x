@@ -4,8 +4,10 @@ import com.model.Manufacturer;
 import com.model.Phone;
 import com.repository.PhoneRepository;
 
+import javax.swing.text.html.Option;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class PhoneService {
@@ -63,5 +65,9 @@ public class PhoneService {
 
     public List<Phone> getAll() {
         return repository.getAll();
+    }
+
+    public Optional<Phone> getOne(String id){
+        return repository.findById(id);
     }
 }
