@@ -24,21 +24,22 @@ public class OpthionalMockTest {
       target.printIfPresent(Mockito.anyString());
       Mockito.verify(repository).findById(Mockito.anyString());
     }
-//??????
-   /* @Test
+
+    @Test
     void printOrPrintDefault() {
-        Mockito.when(repository.findById(Mockito.anyString())).thenReturn(null);
         target.printOrGetDefault(Mockito.anyString());
-        Mockito.verify(repository).findById(Mockito.anyString()).orElseGet(Mockito.any());
-    }*/
+        Mockito.verify(repository).findById(Mockito.anyString());
+    }
 
     @Test
     void checksPhoneLessThen() {
-        target.checksPhoneLessThen(Mockito.anyString(),Mockito.anyInt());
-        Mockito.verify(repository, Mockito.times(2)).findById(Mockito.anyString());
+        target.checksPhoneLessThen(Mockito.anyString(),2);
+        Mockito.verify(repository).findById(Mockito.anyString());
     }
 
     @Test
     void printPhone() {
+        target.printPhone(Mockito.anyString());
+        Mockito.verify(repository).findById(Mockito.anyString());
     }
 }
