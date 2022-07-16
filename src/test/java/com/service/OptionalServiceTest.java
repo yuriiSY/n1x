@@ -53,7 +53,7 @@ class OptionalServiceTest {
     @Test
     void mapPhoneToString_shouldReturnPhone() {
         String id = OPTIONAL_EXAMPLES.getAll().get(0).getId();
-        Assertions.assertEquals(OPTIONAL_EXAMPLES.getAll().get(0).toString(),OPTIONAL_EXAMPLES.mapPhoneToString(id));
+        Assertions.assertEquals(String.format("Phone: "+OPTIONAL_EXAMPLES.getAll().get(0).toString()),OPTIONAL_EXAMPLES.mapPhoneToString(id));
     }
 
     @Test

@@ -57,13 +57,14 @@ public class Main {
 
         OPTIONAL_EXAMPLES.createAndSavePhones(2);
         String id = OPTIONAL_EXAMPLES.getAll().get(0).getId();
-        OPTIONAL_EXAMPLES.printIfPresent(id);
-        OPTIONAL_EXAMPLES.printOrGetDefault(id);
-        OPTIONAL_EXAMPLES.printOrGetDefault("asd");
+        System.out.println(OPTIONAL_EXAMPLES.printIfPresent(id));
+        System.out.println(OPTIONAL_EXAMPLES.printIfPresent(""));
+        System.out.println(OPTIONAL_EXAMPLES.printOrGetDefault(id));
+        System.out.println(OPTIONAL_EXAMPLES.printOrGetDefault("asd"));
         OPTIONAL_EXAMPLES.printOrCreatDefault(id);
         OPTIONAL_EXAMPLES.printOrCreatDefault("ads");
-        OPTIONAL_EXAMPLES.mapPhoneToString(id);
-        OPTIONAL_EXAMPLES.mapPhoneToString("sd");
+        System.out.println(OPTIONAL_EXAMPLES.mapPhoneToString(id));
+        System.out.println(OPTIONAL_EXAMPLES.mapPhoneToString("sd"));
         OPTIONAL_EXAMPLES.printOrPrintDefault(id);
         OPTIONAL_EXAMPLES.checksPhoneLessThen(id, 1000);
         OPTIONAL_EXAMPLES.checksPhoneLessThen(id, 10);

@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class OptionalService {
 
@@ -44,9 +45,11 @@ public class OptionalService {
         final int index = RANDOM.nextInt(values.length);
         return values[index];
     }
-    public void printIfPresent(String id) {
+    public Phone printIfPresent(String id) {
+        AtomicReference s = new AtomicReference();
         final Optional<Phone> phoneOptional = repository.findById(id);
-        phoneOptional.ifPresent(phone -> { System.out.println(phone); } );
+        phoneOptional.ifPresent(phone -> s.set(phone));
+        return (Phone) s.get();
     }
 
     public Phone printOrGetDefault(String id) {
@@ -63,42 +66,49 @@ public class OptionalService {
 
     public String mapPhoneToString(String id) {
         final String phone1 = repository.findById(id)
-                .map(p -> p.toString())
+                .map(p -> String.format("Phone: "  + p.toString()))
                 .orElse("Phone not found");
         return phone1;
     }
 //
-    public void printOrPrintDefault(String id) {
+    public Phone printOrPrintDefault(String id) {
+        AtomicReference s = new AtomicReference();
         repository.findById(id).ifPresentOrElse(
                 phone -> {
-                    System.out.println(phone);
+                    s.set(phone);
                 },
                 () -> {
-                    System.out.println(createAndSavePhone());
+                    s.set(createAndSavePhone());
                 }
         );
+        return (Phone) s.get();
     }
 
-    public void checksPhoneLessThen(String id, int count) {
+    public String checksPhoneLessThen(String id, int count) {
+        AtomicReference s = new AtomicReference();
         repository.findById(id)
                 .filter(phone -> phone.getCount() <= count)
                 .ifPresentOrElse(
                         phone -> {
-                            System.out.println(phone);
+                            s.set(phone.toString());
                         },
                         () -> {
-                            System.out.println("Phone with count " + count + " not found");
+                            s.set(createAndSavePhone());
+                            //s.set("Phone with count " + count + " not found");
                         }
                 );
+        return (String) s.get();
     }
 
     public Phone printPhoneOrElseThrowException(String id) {
         final Phone phone = repository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Phone with id " + id + " not found"));
         return phone;
+
     }
 
     public void printPhone(String id) {
+        AtomicReference s = new AtomicReference();
         repository.findById(id).or(() -> Optional.of(createAndSavePhone()))
                 .ifPresent(phone -> System.out.println(phone));
     }
