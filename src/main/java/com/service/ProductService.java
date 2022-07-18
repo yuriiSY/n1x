@@ -2,15 +2,15 @@ package com.service;
 
 import com.model.Product;
 import com.repository.CrudRepository;
-import org.slf4j.LoggerFactory;
+
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
-import java.util.logging.Logger;
+
 
 public abstract class ProductService <T extends Product>{
-    //private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
+
     protected static final Random RANDOM = new Random();
     protected final CrudRepository<T> repository;
 
