@@ -1,10 +1,11 @@
 package com.repository;
 
+import com.model.Tablet;
 import com.model.Television;
 
 import java.util.*;
 
-public class TelevisionRepository implements TelevisionCrudRepository{
+public class TelevisionRepository implements CrudRepository<Television>{
 
     private final List<Television> televisions;
 
@@ -68,6 +69,16 @@ public class TelevisionRepository implements TelevisionCrudRepository{
         return Optional.ofNullable(result);
     }
 
+    @Override
+    public Optional<Television> findByTitle(String title) {
+        Television result = null;
+        for (Television tablet : televisions) {
+            if (tablet.getTitle().equals(title)) {
+                result = tablet;
+            }
+        }
+        return Optional.ofNullable(result);
+    }
     private static class TelevisionCopy {
         private static void copy(final Television from, final Television to) {
             to.setCount(from.getCount());
