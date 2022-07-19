@@ -27,17 +27,17 @@ class ServiceTest {
 
     @Test
     void createAndSavePhones_negativeCount() {
-        Assertions.assertThrows(IllegalArgumentException.class, () ->  target.createAndSavePhones(-1));
+        Assertions.assertThrows(IllegalArgumentException.class, () ->  target.createAndSave(-1));
     }
 
     @Test
     void createAndSavePhones_zeroCount() {
-        Assertions.assertThrows(IllegalArgumentException.class, () ->  target.createAndSavePhones(0));
+        Assertions.assertThrows(IllegalArgumentException.class, () ->  target.createAndSave(0));
     }
 
     @Test
     void createAndSavePhones() {
-        target.createAndSavePhones(2);
+        target.createAndSave(2);
         Mockito.verify(repository).saveAll(Mockito.anyList());
     }
 
@@ -58,7 +58,7 @@ class ServiceTest {
     @Test
     void printAll() {
         final Phone phone = new Phone("Title", 100, 1000.0, "Model", Manufacturer.APPLE);
-        target.savePhone(phone);
+        target.save(phone);
         target.printAll();
         Mockito.verify(repository).getAll();
     }
@@ -66,7 +66,7 @@ class ServiceTest {
     @Test
     void savePhone() {
         final Phone phone = new Phone("Title", 100, 1000.0, "Model", Manufacturer.APPLE);
-        target.savePhone(phone);
+        target.save(phone);
 
         ArgumentCaptor<Phone> argument = ArgumentCaptor.forClass(Phone.class);
         Mockito.verify(repository).save(argument.capture());
@@ -76,7 +76,7 @@ class ServiceTest {
     @Test
     void savePhone_zeroCount() {
         final Phone phone = new Phone("Title", 0, 1000.0, "Model", Manufacturer.APPLE);
-        target.savePhone(phone);
+        target.save(phone);
 
         ArgumentCaptor<Phone> argument = ArgumentCaptor.forClass(Phone.class);
         Mockito.verify(repository).save(argument.capture());
@@ -87,7 +87,7 @@ class ServiceTest {
     @Test
     void savePhone_price() {
         final Phone phone = new Phone("Title", 0, 1000.0, "Model", Manufacturer.APPLE);
-        target.savePhone(phone);
+        target.save(phone);
 
         ArgumentCaptor<Phone> argument = ArgumentCaptor.forClass(Phone.class);
         Mockito.verify(repository).save(argument.capture());
@@ -100,7 +100,7 @@ class ServiceTest {
     @Test
     void deletePhone_Matcher() {
         final Phone phone = new Phone("Title", 0, 1000.0, "Model", Manufacturer.APPLE);
-        target.savePhone(phone);
+        target.save(phone);
         Mockito.when(repository.delete(Mockito.argThat(s -> s.length() == 36))).thenReturn(true);
         assertTrue(repository.delete("2b5d48b0-c174-4c08-978f-f64070f4dcdt"));
         assertFalse(repository.delete("asdasda"));

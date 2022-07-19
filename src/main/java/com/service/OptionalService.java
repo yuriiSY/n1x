@@ -93,8 +93,7 @@ public class OptionalService {
                             s.set(phone.toString());
                         },
                         () -> {
-                            s.set(createAndSavePhone());
-                            //s.set("Phone with count " + count + " not found");
+                            s.set("Phone with count " + count + " not found");
                         }
                 );
         return (String) s.get();
