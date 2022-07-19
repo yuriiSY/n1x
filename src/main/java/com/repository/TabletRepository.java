@@ -1,10 +1,11 @@
 package com.repository;
 
+import com.model.Phone;
 import com.model.Tablet;
 
 import java.util.*;
 
-public class TabletRepository implements TabletCrudRepository {
+public class TabletRepository implements CrudRepository<Tablet> {
 
     private final List<Tablet> tablets;
 
@@ -59,6 +60,17 @@ public class TabletRepository implements TabletCrudRepository {
         Tablet result = null;
         for (Tablet tablet : tablets) {
             if (tablet.getId().equals(id)) {
+                result = tablet;
+            }
+        }
+        return Optional.ofNullable(result);
+    }
+
+    @Override
+    public Optional<Tablet> findByTitle(String title) {
+        Tablet result = null;
+        for (Tablet tablet : tablets) {
+            if (tablet.getTitle().equals(title)) {
                 result = tablet;
             }
         }

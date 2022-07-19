@@ -2,12 +2,13 @@ package com;
 
 import com.model.Manufacturer;
 import com.model.Phone;
+import com.model.Tablet;
 import com.repository.PhoneRepository;
-import com.service.OptionalService;
-import com.service.PhoneService;
-import com.service.TabletService;
-import com.service.TelevisionService;
+import com.repository.TabletRepository;
+import com.repository.TelevisionRepository;
+import com.service.*;
 
+import java.util.Random;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -16,12 +17,22 @@ public class Main {
 
     private static final Logger LOGGER = Logger.getGlobal();
     private static final PhoneService PHONE_SERVICE = new PhoneService( new PhoneRepository());
-    private static final TabletService TABLET_SERVICE = new TabletService();
-    private static final TelevisionService TELEVISION_SERVICE = new TelevisionService();
+    private static final TabletService TABLET_SERVICE = new TabletService(new TabletRepository());
+    private static final TelevisionService TELEVISION_SERVICE = new TelevisionService(new TelevisionRepository());
     private static final OptionalService OPTIONAL_EXAMPLES = new OptionalService(new PhoneRepository());
 
     public static void main(String[] args) {
-       /* LOGGER.info("creation of telephones");
+
+        PHONE_SERVICE.createAndSave(2);
+        PHONE_SERVICE.printAll();
+        TABLET_SERVICE.createAndSave(2);
+        TABLET_SERVICE.printAll();
+        TELEVISION_SERVICE.createAndSave(2);
+        TELEVISION_SERVICE.printAll();
+
+        System.out.println("-".repeat(10));
+
+        /* LOGGER.info("creation of telephones");
         System.out.println("Phone models:");
         PHONE_SERVICE.createAndSavePhones(5);
         PHONE_SERVICE.printAll();
@@ -55,26 +66,42 @@ public class Main {
         PHONE_SERVICE.updatePhone(new Phone(title,count,price,model,manufacturer));
         PHONE_SERVICE.printAll();*/
 
-        OPTIONAL_EXAMPLES.createAndSavePhones(2);
-        String id = OPTIONAL_EXAMPLES.getAll().get(0).getId();
-        System.out.println(OPTIONAL_EXAMPLES.printIfPresent(id));
-        System.out.println(OPTIONAL_EXAMPLES.printIfPresent(""));
-        System.out.println(OPTIONAL_EXAMPLES.printOrGetDefault(id));
-        System.out.println(OPTIONAL_EXAMPLES.printOrGetDefault("asd"));
-        OPTIONAL_EXAMPLES.printOrCreatDefault(id);
-        OPTIONAL_EXAMPLES.printOrCreatDefault("ads");
-        System.out.println(OPTIONAL_EXAMPLES.mapPhoneToString(id));
-        System.out.println(OPTIONAL_EXAMPLES.mapPhoneToString("sd"));
-        OPTIONAL_EXAMPLES.printOrPrintDefault(id);
-        OPTIONAL_EXAMPLES.checksPhoneLessThen(id, 1000);
-        OPTIONAL_EXAMPLES.checksPhoneLessThen(id, 10);
-        OPTIONAL_EXAMPLES.checksPhoneLessThen("123", 1000);
-        try {
-            OPTIONAL_EXAMPLES.printPhoneOrElseThrowException(id);
-        } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
-        }
-        OPTIONAL_EXAMPLES.printPhone(id);
+//        OPTIONAL_EXAMPLES.createAndSavePhones(2);
+//        String id = OPTIONAL_EXAMPLES.getAll().get(0).getId();
+//        System.out.println(OPTIONAL_EXAMPLES.printIfPresent(id));
+//        System.out.println(OPTIONAL_EXAMPLES.printIfPresent(""));
+//        System.out.println(OPTIONAL_EXAMPLES.printOrGetDefault(id));
+//        System.out.println(OPTIONAL_EXAMPLES.printOrGetDefault("asd"));
+//        OPTIONAL_EXAMPLES.printOrCreatDefault(id);
+//        OPTIONAL_EXAMPLES.printOrCreatDefault("ads");
+//        System.out.println(OPTIONAL_EXAMPLES.mapPhoneToString(id));
+//        System.out.println(OPTIONAL_EXAMPLES.mapPhoneToString("sd"));
+//        OPTIONAL_EXAMPLES.printOrPrintDefault(id);
+//        OPTIONAL_EXAMPLES.checksPhoneLessThen(id, 1000);
+//        OPTIONAL_EXAMPLES.checksPhoneLessThen(id, 10);
+//        OPTIONAL_EXAMPLES.checksPhoneLessThen("123", 1000);
+//        try {
+//            OPTIONAL_EXAMPLES.printPhoneOrElseThrowException(id);
+//        } catch (IllegalArgumentException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        OPTIONAL_EXAMPLES.printPhone(id);
+//
+//        OPTIONAL_EXAMPLES.createAndSavePhones(1);
+//        Phone phone = OPTIONAL_EXAMPLES.getAll().get(0);
+        Container container = new Container();
+        container.save(new Phone("Title", 1, 10, "Model", Manufacturer.APPLE));
+        container.save(new Phone("Title", 1, 100, "Model", Manufacturer.APPLE));
+        container.printerContainer();
+        container.sail(0);
+        container.printerContainer();
+
+        container.countRise(2.0,1);
+        container.printerContainer();
+
+
+
+
 
     }
 }

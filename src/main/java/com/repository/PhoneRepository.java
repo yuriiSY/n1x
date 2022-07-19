@@ -4,7 +4,7 @@ import com.model.Phone;
 
 import java.util.*;
 
-public class PhoneRepository implements PhoneCrudRepository {
+public class PhoneRepository implements CrudRepository<Phone> {
     private final List<Phone> phones;
 
     public PhoneRepository() {
