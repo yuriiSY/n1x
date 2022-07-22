@@ -1,12 +1,13 @@
 package com.service;
 
 import com.model.Product;
+import com.model.SortByCount;
+import com.model.SortByName;
+import com.model.SortByPrice;
 import com.repository.CrudRepository;
 
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 
 public abstract class ProductService <T extends Product>{
@@ -47,5 +48,16 @@ public abstract class ProductService <T extends Product>{
         for (T phone : repository.getAll()) {
             System.out.println(phone);
         }
+    }
+
+    public void sortPrice(){
+        Collections.sort(repository.getAll(),new SortByPrice());
+    }
+
+    public void sortName(){
+        Collections.sort(repository.getAll(),new SortByName());
+    }
+    public void sortCount(){
+        Collections.sort(repository.getAll(),new SortByCount());
     }
 }
