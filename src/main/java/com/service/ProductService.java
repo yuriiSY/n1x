@@ -1,9 +1,6 @@
 package com.service;
 
-import com.model.Product;
-import com.model.SortByCount;
-import com.model.SortByName;
-import com.model.SortByPrice;
+import com.model.*;
 import com.repository.CrudRepository;
 
 
@@ -50,12 +47,16 @@ public abstract class ProductService <T extends Product>{
         }
     }
 
+
+    public void sortProduct(){
+        Collections.sort(repository.getAll(),new ProductComporator());
+    }
+
     public void sortPrice(){
         Collections.sort(repository.getAll(),new SortByPrice());
     }
 
     public void sortName(){
-
         Collections.sort(repository.getAll(),new SortByName());
     }
     public void sortCount(){

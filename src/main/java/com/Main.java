@@ -22,14 +22,15 @@ public class Main {
 
 
         Order order = new Order();
-        order.add(new Phone("Title0", 0, 0.0, "Model", Manufacturer.APPLE));
-        order.add(new Phone("Title1", 0, 0.0, "Model", Manufacturer.APPLE));
-        order.add(new Phone("Title2", 0, 0.0, "Model", Manufacturer.APPLE));
+        order.add(new Phone("Title0", 6, 6.0, "Model", Manufacturer.APPLE));
+        order.add(new Phone("Title1", 2, 3.0, "Model", Manufacturer.APPLE));
+        order.add(new Phone("Title2", 4, 5.0, "Model", Manufacturer.APPLE));
         System.out.println(order.getDateOfVersion(0));
         System.out.println(order.getDateOfLastVersion());
         System.out.println(order.getDateOFirstVersion());
         System.out.println(order.size());
         System.out.println("---------------------");
+
         for (Product o : order) {
             System.out.println(o);
         }
@@ -38,7 +39,7 @@ public class Main {
 
         PHONE_SERVICE.createAndSave(5);
         PHONE_SERVICE.printAll();
-        PHONE_SERVICE.sortPrice();
+        PHONE_SERVICE.sortProduct();
         PHONE_SERVICE.printAll();
 
         TABLET_SERVICE.createAndSave(2);
