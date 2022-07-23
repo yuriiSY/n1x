@@ -1,8 +1,9 @@
 package com.model;
 
 import java.util.Date;
+import java.util.Iterator;
 
-public class Order  {
+public class Order implements Iterable<Product> {
     private Node first;
     private Node last;
     private int size = 0;
@@ -18,11 +19,11 @@ public class Order  {
     }
 
     public String getDateOfLastVersion() {
-        return getNode(size-1).value +" was added "+ getNode(size-1).DATE;
+        return last +" was added "+ first.DATE;
     }
 
     public String getDateOFirstVersion() {
-        return getNode(0).value +" was added "+ getNode(0).DATE;
+        return first +" was added "+ first.DATE;
     }
 
     public void add(Product product) {
@@ -106,6 +107,24 @@ public class Order  {
             node = node.next;
         }
         return node;
+    }
+
+    @Override
+    public Iterator<Product> iterator() {
+        return new Iterator<Product>() {
+            private Node node = first;
+            @Override
+            public boolean hasNext() {
+                return node != null;
+            }
+
+            @Override
+            public Product next() {
+                Product product = node.value;
+                node = node.next;
+                return product;
+            }
+        };
     }
 
     private static class Node {

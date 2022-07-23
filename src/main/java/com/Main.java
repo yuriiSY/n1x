@@ -29,6 +29,10 @@ public class Main {
         System.out.println(order.getDateOfLastVersion());
         System.out.println(order.getDateOFirstVersion());
         System.out.println(order.size());
+        System.out.println("---------------------");
+        for (Product o : order) {
+            System.out.println(o);
+        }
 
 
 

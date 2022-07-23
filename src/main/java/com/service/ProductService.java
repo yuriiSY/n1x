@@ -55,6 +55,7 @@ public abstract class ProductService <T extends Product>{
     }
 
     public void sortName(){
+
         Collections.sort(repository.getAll(),new SortByName());
     }
     public void sortCount(){
