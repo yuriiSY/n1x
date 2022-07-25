@@ -63,4 +63,20 @@ public class Tree {
             this.rightBranch = rightBranch;
         }
     }
+
+    public void printTree( ) {
+        System.out.println("Left");
+        printTree( root.leftBranch );
+        System.out.println("Right");
+        printTree( root.rightBranch);
+    }
+
+
+    private void printTree( Node branch ) {
+        if (branch != null) {
+            printTree(branch.leftBranch);
+            System.out.println(branch.product);
+            printTree(branch.rightBranch);
+        }
+    }
 }

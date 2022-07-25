@@ -16,17 +16,19 @@ import java.util.logging.Logger;
 public class Main {
 
     private static final Scanner SCANNER = new Scanner(System.in);
+
     public static void main(String[] args) {
 
         Tree tree = new Tree(new ProductComporator());
-        tree.add(new Phone("Title2", 4, 5.0, "Model", Manufacturer.APPLE));
-        tree.add(new Phone("Title1", 4, 6.0, "Model", Manufacturer.APPLE));
-        tree.add(new Phone("Title3", 4, 2.0, "Model", Manufacturer.APPLE));
-        tree.add(new Phone("Title4", 4, 1.0, "Model", Manufacturer.APPLE));
-        tree.add(new Phone("Title5", 4, 1.0, "Model", Manufacturer.APPLE));
+        tree.add(new Phone("Title2", 4, 8.0, "Model", Manufacturer.APPLE));
+        tree.add(new Phone("Title1", 4, 9.0, "Model", Manufacturer.APPLE));
+        tree.add(new Phone("Title3", 4, 6.0, "Model", Manufacturer.APPLE));
+        tree.add(new Phone("Title4", 4, 5.0, "Model", Manufacturer.APPLE));
+        tree.add(new Phone("Title5", 4, 4.0, "Model", Manufacturer.APPLE));
+        tree.add(new Phone("Title4", 4, 2.0, "Model", Manufacturer.APPLE));
         System.out.println(tree.sumOfPricesRightBranch());
         System.out.println(tree.sumOfPricesLeftBranch());
-
+        tree.printTree();
 
         /*final Commands[] values = Commands.values();
         boolean exit;
@@ -123,7 +125,7 @@ public class Main {
 //
 //        OPTIONAL_EXAMPLES.createAndSavePhones(1);
 //        Phone phone = OPTIONAL_EXAMPLES.getAll().get(0);
-        Container container = new Container();
+/*        Container container = new Container();
         container.save(new Phone("Title", 1, 10, "Model", Manufacturer.APPLE));
         container.save(new Phone("Title", 1, 100, "Model", Manufacturer.APPLE));
         container.printerContainer();
@@ -152,5 +154,8 @@ public class Main {
             command.execute();
             return false;
         }
+    }
+    */
+
     }
 }
