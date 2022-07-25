@@ -4,12 +4,35 @@ import com.model.Manufacturer;
 import com.model.Phone;
 import com.model.Television;
 import com.repository.CrudRepository;
+import com.repository.TabletRepository;
+import com.repository.TelevisionRepository;
 
 public class TelevisionService extends ProductService<Television> {
 
-    public TelevisionService(CrudRepository repository) {
+
+    private final TelevisionRepository repository;
+    private static TelevisionService instance;
+
+    private TelevisionService(final TelevisionRepository repository) {
         super(repository);
+        this.repository = repository;
     }
+
+
+    public static TelevisionService getInstance() {
+        if (instance == null) {
+            instance = new TelevisionService(TelevisionRepository.getInstance());
+        }
+        return instance;
+    }
+
+    public static TelevisionService getInstance(final TelevisionRepository repository) {
+        if (instance == null) {
+            instance = new TelevisionService(repository);
+        }
+        return instance;
+    }
+
 
     @Override
     protected Television creatProduct() {

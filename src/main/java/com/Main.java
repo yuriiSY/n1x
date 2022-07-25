@@ -19,24 +19,25 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Tree tree = new Tree(new ProductComporator());
-        tree.add(new Phone("Title2", 4, 8.0, "Model", Manufacturer.APPLE));
-        tree.add(new Phone("Title1", 4, 9.0, "Model", Manufacturer.APPLE));
-        tree.add(new Phone("Title3", 4, 6.0, "Model", Manufacturer.APPLE));
-        tree.add(new Phone("Title4", 4, 5.0, "Model", Manufacturer.APPLE));
-        tree.add(new Phone("Title5", 4, 4.0, "Model", Manufacturer.APPLE));
-        tree.add(new Phone("Title4", 4, 2.0, "Model", Manufacturer.APPLE));
-        System.out.println(tree.sumOfPricesRightBranch());
-        System.out.println(tree.sumOfPricesLeftBranch());
-        tree.printTree();
+//        Tree tree = new Tree(new ProductComporator());
+//        tree.add(new Phone("Title2", 4, 8.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title1", 4, 9.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title3", 4, 6.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title4", 4, 5.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title5", 4, 4.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title4", 4, 2.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title1", 4, 10.0, "Model", Manufacturer.APPLE));
+//        System.out.println(tree.sumOfPricesRightBranch());
+//        System.out.println(tree.sumOfPricesLeftBranch());
+//        tree.printTree();
 
-        /*final Commands[] values = Commands.values();
+        final Commands[] values = Commands.values();
         boolean exit;
 
         do {
             exit = userAction(values);
         } while (!exit);
-*/
+
 
         /*
         Order order = new Order();
@@ -135,8 +136,10 @@ public class Main {
         container.countRise(2.0, 1);
         container.printerContainer();
     }
+*/
 
-    private static boolean userAction(final Commands[] values) {
+        }
+    private static boolean userAction(final Commands[] values){
         int userCommand = -1;
         do {
             for (int i = 0; i < values.length; i++) {
@@ -154,8 +157,5 @@ public class Main {
             command.execute();
             return false;
         }
-    }
-    */
-
     }
 }
