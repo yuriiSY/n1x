@@ -17,7 +17,13 @@ public class Tree {
         root = insert(root, product);
     }
 
-    public int sumOfPricesOfRightBranch() {
+    public int sumOfPricesLeftBranch() {
+        if (root.leftBranch == null) {
+            return 0;
+        }
+        return sum(root.leftBranch);
+    }
+    public int sumOfPricesRightBranch() {
         if (root.rightBranch == null) {
             return 0;
         }
@@ -57,5 +63,4 @@ public class Tree {
             this.rightBranch = rightBranch;
         }
     }
-
 }

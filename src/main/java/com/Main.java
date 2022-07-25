@@ -24,8 +24,9 @@ public class Main {
         tree.add(new Phone("Title3", 4, 2.0, "Model", Manufacturer.APPLE));
         tree.add(new Phone("Title4", 4, 1.0, "Model", Manufacturer.APPLE));
         tree.add(new Phone("Title5", 4, 1.0, "Model", Manufacturer.APPLE));
-        System.out.println(tree.sumOfPricesOfRightBranch());
-        System.out.println(tree.sumOfPricesOfRightBranch());
+        System.out.println(tree.sumOfPricesRightBranch());
+        System.out.println(tree.sumOfPricesLeftBranch());
+
 
         /*final Commands[] values = Commands.values();
         boolean exit;
