@@ -22,7 +22,7 @@ class ServiceTest {
     @BeforeEach
     void setUp() {
         repository = Mockito.mock(PhoneRepository.class);
-        target = new PhoneService(repository);
+        target = PhoneService.getInstance(repository.getInstance());
     }
 
     @Test

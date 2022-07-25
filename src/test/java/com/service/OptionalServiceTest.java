@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class OptionalServiceTest {
 
-    private static final OptionalService OPTIONAL_EXAMPLES = new OptionalService(new PhoneRepository());
+    private static final OptionalService OPTIONAL_EXAMPLES = new OptionalService(PhoneRepository.getInstance());
 
     @BeforeEach
     void setUp(){

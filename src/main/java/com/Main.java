@@ -1,6 +1,9 @@
 package com;
 
+import com.command.Command;
+import com.command.Commands;
 import com.model.*;
+import com.model.comparator.ProductComporator;
 import com.repository.PhoneRepository;
 import com.repository.TabletRepository;
 import com.repository.TelevisionRepository;
@@ -12,15 +15,27 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    private static final Logger LOGGER = Logger.getGlobal();
-    private static final PhoneService PHONE_SERVICE = new PhoneService( new PhoneRepository());
-    private static final TabletService TABLET_SERVICE = new TabletService(new TabletRepository());
-    private static final TelevisionService TELEVISION_SERVICE = new TelevisionService(new TelevisionRepository());
-    private static final OptionalService OPTIONAL_EXAMPLES = new OptionalService(new PhoneRepository());
-
+    private static final Scanner SCANNER = new Scanner(System.in);
     public static void main(String[] args) {
 
+        Tree tree = new Tree(new ProductComporator());
+        tree.add(new Phone("Title2", 4, 5.0, "Model", Manufacturer.APPLE));
+        tree.add(new Phone("Title1", 4, 6.0, "Model", Manufacturer.APPLE));
+        tree.add(new Phone("Title3", 4, 2.0, "Model", Manufacturer.APPLE));
+        tree.add(new Phone("Title4", 4, 1.0, "Model", Manufacturer.APPLE));
+        tree.add(new Phone("Title5", 4, 1.0, "Model", Manufacturer.APPLE));
+        System.out.println(tree.sumOfPricesOfRightBranch());
+        System.out.println(tree.sumOfPricesOfRightBranch());
 
+        /*final Commands[] values = Commands.values();
+        boolean exit;
+
+        do {
+            exit = userAction(values);
+        } while (!exit);
+*/
+
+        /*
         Order order = new Order();
         order.add(new Phone("Title0", 6, 6.0, "Model", Manufacturer.APPLE));
         order.add(new Phone("Title1", 2, 3.0, "Model", Manufacturer.APPLE));
@@ -36,7 +51,7 @@ public class Main {
         }
 
 
-
+/*
         PHONE_SERVICE.createAndSave(5);
         PHONE_SERVICE.printAll();
         PHONE_SERVICE.sortProduct();
@@ -114,12 +129,27 @@ public class Main {
         container.sail(0);
         container.printerContainer();
 
-        container.countRise(2.0,1);
+        container.countRise(2.0, 1);
         container.printerContainer();
+    }
 
-
-
-
-
+    private static boolean userAction(final Commands[] values) {
+        int userCommand = -1;
+        do {
+            for (int i = 0; i < values.length; i++) {
+                System.out.printf("%d) %s%n", i, values[i].getName());
+            }
+            int input = SCANNER.nextInt();
+            if (input >= 0 && input < values.length) {
+                userCommand = input;
+            }
+        } while (userCommand == -1);
+        final Command command = values[userCommand].getCommand();
+        if (command == null) {
+            return true;
+        } else {
+            command.execute();
+            return false;
+        }
     }
 }
