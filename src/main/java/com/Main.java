@@ -1,15 +1,12 @@
 package com;
 
-import com.model.Manufacturer;
-import com.model.Phone;
-import com.model.Tablet;
+import com.model.*;
 import com.repository.PhoneRepository;
 import com.repository.TabletRepository;
 import com.repository.TelevisionRepository;
 import com.service.*;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import java.util.logging.Logger;
 
 
@@ -23,12 +20,33 @@ public class Main {
 
     public static void main(String[] args) {
 
-        PHONE_SERVICE.createAndSave(2);
+
+        Order order = new Order();
+        order.add(new Phone("Title0", 6, 6.0, "Model", Manufacturer.APPLE));
+        order.add(new Phone("Title1", 2, 3.0, "Model", Manufacturer.APPLE));
+        order.add(new Phone("Title2", 4, 5.0, "Model", Manufacturer.APPLE));
+        System.out.println(order.getDateOfVersion(0));
+        System.out.println(order.getDateOfLastVersion());
+        System.out.println(order.getDateOFirstVersion());
+        System.out.println(order.size());
+        System.out.println("---------------------");
+
+        for (Product o : order) {
+            System.out.println(o);
+        }
+
+
+
+        PHONE_SERVICE.createAndSave(5);
         PHONE_SERVICE.printAll();
+        PHONE_SERVICE.sortProduct();
+        PHONE_SERVICE.printAll();
+
         TABLET_SERVICE.createAndSave(2);
         TABLET_SERVICE.printAll();
         TELEVISION_SERVICE.createAndSave(2);
         TELEVISION_SERVICE.printAll();
+
 
         System.out.println("-".repeat(10));
 
