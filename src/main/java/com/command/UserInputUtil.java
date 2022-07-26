@@ -20,17 +20,38 @@ public class UserInputUtil {
         return userType;
     }
 
-    public static int getUserInput(List<String> names) {
-        int userType = -1;
-        do {
-            userType = getUserInput1(names);
-        } while (userType == -1);
-        return userType;
+    public static boolean userAction(final Commands[] values) {
+        try {
+            int userCommand = -1;
+            do {
+                for (int i = 0; i < values.length; i++) {
+                    System.out.printf("%d) %s%n", i, values[i].getName());
+                }
+                int input = Integer.parseInt(READER.readLine());
+                if (input >= 0 && input < values.length) {
+                    userCommand = input;
+                }
+            } while (userCommand == -1);
+            final Command command = values[userCommand].getCommand();
+            if (command == null) {
+                return true;
+            } else {
+                command.execute();
+                return false;
+            }
+        }catch (IOException | NumberFormatException e) {
+            System.out.println("Input is not valid");
+        }
+        return false;
     }
 
     private static int getUserInput(List<String> names, int length) {
         try {
-            System.out.println("Please enter number between 0 and " + length);
+            if (length>0) {
+                System.out.println("Please enter number between 0 and " + length);
+            } else {
+                System.out.println("Which one");
+            }
             for (int i = 0; i < length; i++) {
                 System.out.printf("%d) %s%n", i, names.get(i));
             }
@@ -39,20 +60,6 @@ public class UserInputUtil {
                 return input;
             }
         }    catch (IOException | NumberFormatException e) {
-            System.out.println("Input is not valid");
-        }
-        return -1;
-    }
-
-
-    private static int getUserInput1(List<String> names) {
-        try {
-            System.out.println("Please choose product which you want to update");
-            int input = Integer.parseInt(READER.readLine());
-            if (input >= 0 && input < names.size()) {
-                return input;
-            }
-        } catch (IOException | NumberFormatException e) {
             System.out.println("Input is not valid");
         }
         return -1;

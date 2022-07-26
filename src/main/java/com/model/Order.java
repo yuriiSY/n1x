@@ -15,15 +15,15 @@ public class Order implements Iterable<Product> {
 
     public String getDateOfVersion(int version) {
 
-        return getNode(version).value +" was added "+ getNode(version).DATE;
+        return getNode(version).value +" was added "+ getNode(version).date;
     }
 
     public String getDateOfLastVersion() {
-        return last +" was added "+ first.DATE;
+        return last +" was added "+ first.date;
     }
 
     public String getDateOFirstVersion() {
-        return first +" was added "+ first.DATE;
+        return first +" was added "+ first.date;
     }
 
     public void add(Product product) {
@@ -131,10 +131,10 @@ public class Order implements Iterable<Product> {
     private Node previous;
     private Product value;
 
-    String DATE ;
+    String date ;
     private Node next;
         public Node(Node previous, Product value, Node next) {
-            DATE = new Date().toString();
+            date = new Date().toString();
             this.previous = previous;
             this.value = value;
             this.next = next;

@@ -2,6 +2,7 @@ package com;
 
 import com.command.Command;
 import com.command.Commands;
+import com.command.UserInputUtil;
 import com.model.*;
 import com.model.comparator.ProductComporator;
 import com.repository.PhoneRepository;
@@ -35,7 +36,7 @@ public class Main {
         boolean exit;
 
         do {
-            exit = userAction(values);
+            exit = UserInputUtil.userAction(values);
         } while (!exit);
 
 
@@ -139,23 +140,4 @@ public class Main {
 */
 
         }
-    private static boolean userAction(final Commands[] values){
-        int userCommand = -1;
-        do {
-            for (int i = 0; i < values.length; i++) {
-                System.out.printf("%d) %s%n", i, values[i].getName());
-            }
-            int input = SCANNER.nextInt();
-            if (input >= 0 && input < values.length) {
-                userCommand = input;
-            }
-        } while (userCommand == -1);
-        final Command command = values[userCommand].getCommand();
-        if (command == null) {
-            return true;
-        } else {
-            command.execute();
-            return false;
-        }
-    }
 }
