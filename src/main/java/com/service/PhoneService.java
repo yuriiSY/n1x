@@ -5,18 +5,30 @@ import com.model.Phone;
 import com.repository.CrudRepository;
 import com.repository.PhoneRepository;
 
-import javax.swing.text.html.Option;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
-
 public class PhoneService extends ProductService<Phone> {
 
-    public PhoneService(CrudRepository repository) {
+    private final PhoneRepository repository;
+    private static PhoneService instance;
+
+    private PhoneService(final PhoneRepository repository) {
         super(repository);
+        this.repository = repository;
     }
 
+
+    public static PhoneService getInstance() {
+        if (instance == null) {
+            instance = new PhoneService(PhoneRepository.getInstance());
+        }
+        return instance;
+    }
+
+    public static PhoneService getInstance(final PhoneRepository repository) {
+        if (instance == null) {
+            instance = new PhoneService(repository);
+        }
+        return instance;
+    }
     @Override
     protected Phone creatProduct() {
         return new Phone(
@@ -27,6 +39,7 @@ public class PhoneService extends ProductService<Phone> {
                 getRandomManufacturer()
         );
     }
+
 
     private Manufacturer getRandomManufacturer() {
         final Manufacturer[] values = Manufacturer.values();

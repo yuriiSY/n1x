@@ -7,9 +7,18 @@ import java.util.*;
 public class PhoneRepository implements CrudRepository<Phone> {
     private final List<Phone> phones;
 
-    public PhoneRepository() {
+    private static PhoneRepository instance;
+    private PhoneRepository() {
         phones = new LinkedList<>();
     }
+
+    public static PhoneRepository getInstance() {
+        if (instance == null) {
+            instance = new PhoneRepository();
+        }
+        return instance;
+    }
+
 
     @Override
     public void save(Phone phone) {
@@ -83,9 +92,9 @@ public class PhoneRepository implements CrudRepository<Phone> {
 
     private static class PhoneCopy {
         private static void copy(final Phone from, final Phone to) {
-            to.setCount(from.getCount());
-            to.setPrice(from.getPrice());
-            to.setTitle(from.getTitle());
+            to.setCount(0);
+            to.setPrice(0);
+            to.setTitle("New Title");
         }
     }
 }

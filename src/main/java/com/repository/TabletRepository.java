@@ -8,11 +8,18 @@ import java.util.*;
 public class TabletRepository implements CrudRepository<Tablet> {
 
     private final List<Tablet> tablets;
+    private static TabletRepository instance;
 
-    public TabletRepository() {
+    private TabletRepository() {
         this.tablets = new LinkedList<>();
     }
 
+    public static TabletRepository getInstance() {
+        if (instance == null) {
+            instance = new TabletRepository();
+        }
+        return instance;
+    }
     @Override
     public void save(Tablet tablet) {tablets.add(tablet);}
 

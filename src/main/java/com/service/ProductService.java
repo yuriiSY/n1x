@@ -1,6 +1,10 @@
 package com.service;
 
 import com.model.*;
+import com.model.comparator.ProductComporator;
+import com.model.comparator.SortByCount;
+import com.model.comparator.SortByName;
+import com.model.comparator.SortByPrice;
 import com.repository.CrudRepository;
 
 
@@ -45,6 +49,14 @@ public abstract class ProductService <T extends Product>{
         for (T phone : repository.getAll()) {
             System.out.println(phone);
         }
+    }
+
+    public void delete(T product){
+       repository.delete(product.getId());
+    }
+
+    public void update(T product){
+        repository.update(product);
     }
 
 

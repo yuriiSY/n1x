@@ -35,7 +35,5 @@ public class Container<T extends Product> {
     public<I extends Number> void countRise(I number,int numberOfProduct){
         products.get(numberOfProduct).setCount(products.get(numberOfProduct).getCount() + number.intValue());
     }
-
-
 }
 

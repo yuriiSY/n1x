@@ -9,11 +9,18 @@ public class TelevisionRepository implements CrudRepository<Television>{
 
     private final List<Television> televisions;
 
-    public TelevisionRepository() {
-        this.televisions = new ArrayList<>();
+    private static TelevisionRepository instance;
+
+    private TelevisionRepository() {
+        this.televisions = new LinkedList<>();
     }
 
-
+    public static TelevisionRepository getInstance() {
+        if (instance == null) {
+            instance = new TelevisionRepository();
+        }
+        return instance;
+    }
     @Override
     public void save(Television television) {
        televisions.add(television);

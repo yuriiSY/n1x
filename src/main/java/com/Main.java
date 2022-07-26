@@ -1,6 +1,10 @@
 package com;
 
+import com.command.Command;
+import com.command.Commands;
+import com.command.UserInputUtil;
 import com.model.*;
+import com.model.comparator.ProductComporator;
 import com.repository.PhoneRepository;
 import com.repository.TabletRepository;
 import com.repository.TelevisionRepository;
@@ -12,15 +16,31 @@ import java.util.logging.Logger;
 
 public class Main {
 
-    private static final Logger LOGGER = Logger.getGlobal();
-    private static final PhoneService PHONE_SERVICE = new PhoneService( new PhoneRepository());
-    private static final TabletService TABLET_SERVICE = new TabletService(new TabletRepository());
-    private static final TelevisionService TELEVISION_SERVICE = new TelevisionService(new TelevisionRepository());
-    private static final OptionalService OPTIONAL_EXAMPLES = new OptionalService(new PhoneRepository());
+    private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
 
+//        Tree tree = new Tree(new ProductComporator());
+//        tree.add(new Phone("Title2", 4, 8.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title1", 4, 9.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title3", 4, 6.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title4", 4, 5.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title5", 4, 4.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title4", 4, 2.0, "Model", Manufacturer.APPLE));
+//        tree.add(new Phone("Title1", 4, 10.0, "Model", Manufacturer.APPLE));
+//        System.out.println(tree.sumOfPricesRightBranch());
+//        System.out.println(tree.sumOfPricesLeftBranch());
+//        tree.printTree();
 
+        final Commands[] values = Commands.values();
+        boolean exit;
+
+        do {
+            exit = UserInputUtil.userAction(values);
+        } while (!exit);
+
+
+        /*
         Order order = new Order();
         order.add(new Phone("Title0", 6, 6.0, "Model", Manufacturer.APPLE));
         order.add(new Phone("Title1", 2, 3.0, "Model", Manufacturer.APPLE));
@@ -36,7 +56,7 @@ public class Main {
         }
 
 
-
+/*
         PHONE_SERVICE.createAndSave(5);
         PHONE_SERVICE.printAll();
         PHONE_SERVICE.sortProduct();
@@ -107,19 +127,17 @@ public class Main {
 //
 //        OPTIONAL_EXAMPLES.createAndSavePhones(1);
 //        Phone phone = OPTIONAL_EXAMPLES.getAll().get(0);
-        Container container = new Container();
+/*        Container container = new Container();
         container.save(new Phone("Title", 1, 10, "Model", Manufacturer.APPLE));
         container.save(new Phone("Title", 1, 100, "Model", Manufacturer.APPLE));
         container.printerContainer();
         container.sail(0);
         container.printerContainer();
 
-        container.countRise(2.0,1);
+        container.countRise(2.0, 1);
         container.printerContainer();
-
-
-
-
-
     }
+*/
+
+        }
 }

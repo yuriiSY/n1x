@@ -4,6 +4,7 @@ import com.model.Manufacturer;
 import com.model.Phone;
 import com.model.Tablet;
 import com.repository.CrudRepository;
+import com.repository.PhoneRepository;
 import com.repository.TabletRepository;
 
 import java.util.LinkedList;
@@ -12,8 +13,27 @@ import java.util.Random;
 
 public class TabletService extends ProductService<Tablet> {
 
-    public TabletService(CrudRepository repository) {
+    private final TabletRepository repository;
+    private static TabletService instance;
+
+    private TabletService(final TabletRepository repository) {
         super(repository);
+        this.repository = repository;
+    }
+
+
+    public static TabletService getInstance() {
+        if (instance == null) {
+            instance = new TabletService(TabletRepository.getInstance());
+        }
+        return instance;
+    }
+
+    public static TabletService getInstance(final TabletRepository repository) {
+        if (instance == null) {
+            instance = new TabletService(repository);
+        }
+        return instance;
     }
 
     @Override
