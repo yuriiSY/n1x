@@ -9,6 +9,8 @@ import com.repository.CrudRepository;
 
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 public abstract class ProductService <T extends Product>{
@@ -68,10 +70,49 @@ public abstract class ProductService <T extends Product>{
         Collections.sort(repository.getAll(),new SortByPrice());
     }
 
-    public void sortName(){
+    public  void sortName(){
         Collections.sort(repository.getAll(),new SortByName());
     }
     public void sortCount(){
         Collections.sort(repository.getAll(),new SortByCount());
     }
+
+    public List<T> filterMoreThan(Double price) {
+          return repository.getAll().stream()
+                .filter((n)-> price < n.getPrice())
+                .collect(Collectors.toList());
+    }
+
+    public int sumOfPrise() {
+        return   repository.getAll().stream()
+                .map((n) -> n.getCount())
+                .reduce(0,Integer::sum);
+    }
+    public Map<String, String> sortList(){
+        return repository.getAll().stream()
+                .sorted(new SortByName())
+                .distinct()
+                .collect(Collectors.toMap(Product::getId,Product::getTitle,(o1,o2) -> o2));
+    }
+
+    public DoubleSummaryStatistics summaryStatistics() {
+        return repository.getAll().stream().mapToDouble(Product::getPrice).summaryStatistics();
+    }
+
+    public List<T> isPrice(){
+      List<T> result = filterBy(repository, product -> product.getPrice() == 0 );
+      return result;
+    }
+
+    private  List<T> filterBy(CrudRepository<T> products,Predicate predicate) {
+        List<T> result = new ArrayList<>();
+        for (T i: products.getAll()) {
+            if(predicate.test(i)) {
+                result.add(i);
+            }
+        }
+        return result;
+    }
+
+    public abstract T productFromMap(Map<String,Object> map);
 }

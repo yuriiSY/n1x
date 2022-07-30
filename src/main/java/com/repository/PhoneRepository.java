@@ -6,8 +6,8 @@ import java.util.*;
 
 public class PhoneRepository implements CrudRepository<Phone> {
     private final List<Phone> phones;
-
     private static PhoneRepository instance;
+
     private PhoneRepository() {
         phones = new LinkedList<>();
     }

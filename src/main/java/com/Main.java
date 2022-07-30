@@ -19,6 +19,36 @@ public class Main {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
+            System.out.println("Map to product");
+            ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
+            Map<String, Object> map = new HashMap<>();
+            map.put("title", "Phone - 222");
+            map.put("model", "Model - 88");
+            map.put("price", 123);
+            map.put("count", 48);
+            Phone po = PHONE_SERVICE.productFromMap(map);
+            System.out.println(po.toString());
+          PHONE_SERVICE.createAndSave(5);
+          PHONE_SERVICE.printAll();
+          PHONE_SERVICE.save(new Phone("Title1", 4, 0.0, "Model", Manufacturer.APPLE));
+          System.out.println("Products which does not have Price");
+          List<Phone> noPrice = PHONE_SERVICE.isPrice();
+          System.out.println(noPrice);
+          System.out.println("Summary Statistics");
+          System.out.println(PHONE_SERVICE.summaryStatistics());
+          System.out.print("enter price: ");
+          Double n = SCANNER.nextDouble();
+          System.out.println();
+          List<Phone> l = PHONE_SERVICE.filterMoreThan(n);
+          Map<String,String> r = PHONE_SERVICE.sortList();
+          System.out.println("Map:" + l);
+          System.out.println("=======");
+          TelevisionService p = TelevisionService.getInstance();
+          p.createAndSave(1);
+          p.printAll();
+          String s = SCANNER.next();
+          System.out.println(p.findDetail(s));
+
 
 //        Tree tree = new Tree(new ProductComporator());
 //        tree.add(new Phone("Title2", 4, 8.0, "Model", Manufacturer.APPLE));
