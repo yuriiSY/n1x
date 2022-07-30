@@ -9,7 +9,7 @@ import com.repository.CrudRepository;
 
 
 import java.util.*;
-import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 
@@ -77,6 +77,8 @@ public abstract class ProductService <T extends Product>{
         Collections.sort(repository.getAll(),new SortByCount());
     }
 
+    public  Predicate<List<T>> isValid =
+            (products) -> products.stream().allMatch(product -> product.getPrice() != 0);
     public List<T> filterMoreThan(Double price) {
           return repository.getAll().stream()
                 .filter((n)-> price < n.getPrice())
@@ -104,7 +106,7 @@ public abstract class ProductService <T extends Product>{
       return result;
     }
 
-    private  List<T> filterBy(CrudRepository<T> products,Predicate predicate) {
+    private  List<T> filterBy(CrudRepository<T> products, MyPredicate predicate) {
         List<T> result = new ArrayList<>();
         for (T i: products.getAll()) {
             if(predicate.test(i)) {
@@ -115,4 +117,6 @@ public abstract class ProductService <T extends Product>{
     }
 
     public abstract T productFromMap(Map<String,Object> map);
+
+
 }

@@ -5,6 +5,7 @@ import com.model.Phone;
 import com.repository.CrudRepository;
 import com.repository.PhoneRepository;
 
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -62,4 +63,5 @@ public class PhoneService extends ProductService<Phone> {
         final int index = RANDOM.nextInt(values.length);
         return values[index];
     }
+
 }

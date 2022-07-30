@@ -1,5 +1,5 @@
 package com.model;
 
-public interface Predicate {
+public interface MyPredicate {
     boolean test(Product product);
 }
