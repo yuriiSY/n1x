@@ -1,10 +1,13 @@
 package com.service;
 
 import com.model.Manufacturer;
+import com.model.OperationSystem;
 import com.model.Phone;
 import com.repository.CrudRepository;
 import com.repository.PhoneRepository;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -49,14 +52,18 @@ public class PhoneService extends ProductService<Phone> {
     public Phone productFromMap(Map<String,Object> map){
         Function<Map<String,Object>,Phone> function = (m) -> {
             Phone phone = new Phone((String) m.get("title"),
-                    (Integer) m.get("count"),
-                    (Integer) m.get("price"),
+                    Integer.parseInt((String) m.get("count")),
+                    Integer.parseInt((String) m.get("price")),
                     (String) m.get("model"),
-                    Manufacturer.APPLE);
+                    Manufacturer.APPLE,
+                    new OperationSystem((String) m.get("designation"), Integer.parseInt((String) m.get("version"))),
+                    LocalDateTime.parse((CharSequence) m.get("created"), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))
+                    );
             return phone;
         };
         return function.apply(map);
     }
+
 
     private Manufacturer getRandomManufacturer() {
         final Manufacturer[] values = Manufacturer.values();
