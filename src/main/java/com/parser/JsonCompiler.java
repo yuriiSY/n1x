@@ -6,7 +6,7 @@ import java.io.Reader;
 import java.util.*;
 
 public class JsonCompiler {
-
+//"(\w+)": "(.+)"
     public List<String> jsonToLines(InputStream jsonInputStream) {
         StringBuilder sb = new StringBuilder();
         try(Reader reader = new InputStreamReader(jsonInputStream)) {
