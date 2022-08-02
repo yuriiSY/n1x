@@ -2,20 +2,28 @@ package com.parser;
 
 import com.model.Phone;
 
+import java.io.FileInputStream;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class XmlParser {
     public List<String> xmlToLines(InputStream xmlInputStream) {
-        List<String> xmlText = new ArrayList<>();
-        Scanner scanner = new Scanner(xmlInputStream);
-        while (scanner.hasNext()) {
-            String line = scanner.nextLine();
-            xmlText.add(line.trim());
+        StringBuilder sb = new StringBuilder();
+        try(Reader reader = new InputStreamReader(xmlInputStream)) {
+            int a = reader.read();
+            while (a != -1) {
+                sb.append((char) a);
+                a = reader.read();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return xmlText;
+        List<String> list = List.of(sb.toString().split("\r\n"));
+        return list;
     }
 
     public Map<String,Object> phoneFromFile(List<String> lines) {

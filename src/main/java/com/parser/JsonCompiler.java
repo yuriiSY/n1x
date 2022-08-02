@@ -1,18 +1,25 @@
 package com.parser;
 
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.util.*;
 
 public class JsonCompiler {
 
     public List<String> jsonToLines(InputStream jsonInputStream) {
-        List<String> jsonText = new ArrayList<>();
-        Scanner scanner = new Scanner(jsonInputStream);
-        while (scanner.hasNext()) {
-            String line = scanner.nextLine();
-            jsonText.add(line.trim());
+        StringBuilder sb = new StringBuilder();
+        try(Reader reader = new InputStreamReader(jsonInputStream)) {
+            int a = reader.read();
+            while (a != -1) {
+                sb.append((char) a);
+                a = reader.read();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return jsonText;
+        List<String> list = List.of(sb.toString().split("\r\n"));
+        return list;
     }
 
     public Map<String,Object> phoneFromFile(List<String> lines) {
