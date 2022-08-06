@@ -2,18 +2,16 @@ package com.parser;
 
 import com.model.Phone;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import javax.swing.*;
+import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class XmlParser {
-    public List<String> xmlToLines(InputStream xmlInputStream) {
+    private static List<String> xmlToLines(InputStream xmlInputStream) {
         StringBuilder sb = new StringBuilder();
-        try(Reader reader = new InputStreamReader(xmlInputStream)) {
+        try(InputStream reader = new BufferedInputStream(xmlInputStream)) {
             int a = reader.read();
             while (a != -1) {
                 sb.append((char) a);
@@ -26,7 +24,12 @@ public class XmlParser {
         return list;
     }
 
-    public Map<String,Object> phoneFromFile(List<String> lines) {
+    public Map<String,Object> phoneFromFileToMap(InputStream inputStreamXml){
+        List<String> list = XmlParser.xmlToLines(inputStreamXml);
+        Map<String,Object> map = XmlParser.phoneFromFile(list);
+        return map;
+    }
+    private static Map<String,Object> phoneFromFile(List<String> lines) {
         Pattern compile = Pattern.compile("(<.+>(.*?)<.*>)");
         Matcher matcher;
         Map<String,Object> result = new HashMap<>();

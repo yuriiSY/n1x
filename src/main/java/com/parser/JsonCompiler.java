@@ -1,5 +1,6 @@
 package com.parser;
 
+import java.io.BufferedInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -7,9 +8,9 @@ import java.util.*;
 
 public class JsonCompiler {
 //"(\w+)": "(.+)"
-    public List<String> jsonToLines(InputStream jsonInputStream) {
+    private List<String> jsonToLines(InputStream jsonInputStream) {
         StringBuilder sb = new StringBuilder();
-        try(Reader reader = new InputStreamReader(jsonInputStream)) {
+        try(InputStream reader = new BufferedInputStream(jsonInputStream)) {
             int a = reader.read();
             while (a != -1) {
                 sb.append((char) a);
@@ -22,7 +23,12 @@ public class JsonCompiler {
         return list;
     }
 
-    public Map<String,Object> phoneFromFile(List<String> lines) {
+    public Map<String,Object> phoneFromFileToMap(InputStream inputStreamXml){
+        List<String> list = jsonToLines(inputStreamXml);
+        Map<String,Object> map = phoneFromFile(list);
+        return map;
+    }
+    private Map<String,Object> phoneFromFile(List<String> lines) {
         Map<String, Object> result = new HashMap<>();
         String title,value;
         int index1, index2,index3;
@@ -38,4 +44,6 @@ public class JsonCompiler {
         }
         return result;
     }
+
+
 }

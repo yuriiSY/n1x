@@ -6,8 +6,6 @@ import com.parser.XmlParser;
 import com.service.*;
 
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.*;
 
 
@@ -20,21 +18,16 @@ public class Main {
 
         ClassLoader loader = Thread.currentThread().getContextClassLoader();
         InputStream inputStreamXml = loader.getResourceAsStream("phone.xml");
-        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
-        XmlParser xmlParser = new XmlParser();
-        List<String> list = xmlParser.xmlToLines(inputStreamXml);
-        Map<String,Object> map = xmlParser.phoneFromFile(list);
-        Phone phone = PHONE_SERVICE.productFromMap(map);
+        PhoneService PHONE_SERVICE = PhoneService.getInstance();
+
+        Phone phone = PHONE_SERVICE.xmlPhoneFromMap(inputStreamXml);
         System.out.println(phone.toString());
 
 
         System.out.println("===============");
 
         InputStream inputStreamJson = loader.getResourceAsStream("phone.json");
-        JsonCompiler jsonCompiler = new JsonCompiler();
-        List<String> listJson = jsonCompiler.jsonToLines(inputStreamJson);
-        Map<String,Object> map1 = jsonCompiler.phoneFromFile(listJson);
-        Phone phone1 = PHONE_SERVICE.productFromMap(map1);
+        Phone phone1 = PHONE_SERVICE.jsonPhoneFromMap(inputStreamJson);
         System.out.println(phone1.toString());
 
 

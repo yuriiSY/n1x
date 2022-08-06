@@ -3,9 +3,12 @@ package com.service;
 import com.model.Manufacturer;
 import com.model.OperationSystem;
 import com.model.Phone;
+import com.parser.JsonCompiler;
+import com.parser.XmlParser;
 import com.repository.CrudRepository;
 import com.repository.PhoneRepository;
 
+import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -48,8 +51,7 @@ public class PhoneService extends ProductService<Phone> {
         );
     }
 
-    @Override
-    public Phone productFromMap(Map<String,Object> map){
+    private Phone productFromMap(Map<String,Object> map){
         Function<Map<String,Object>,Phone> function = (m) -> {
             Phone phone = new Phone((String) m.get("title"),
                     Integer.parseInt((String) m.get("count")),
@@ -64,6 +66,17 @@ public class PhoneService extends ProductService<Phone> {
         return function.apply(map);
     }
 
+    public Phone xmlPhoneFromMap(InputStream inputStream){
+        XmlParser xmlParser = new XmlParser();
+        Phone p = productFromMap(xmlParser.phoneFromFileToMap(inputStream));
+        return p;
+    }
+
+    public Phone jsonPhoneFromMap(InputStream inputStream){
+        JsonCompiler jsonCompiler = new JsonCompiler();
+        Phone p = productFromMap(jsonCompiler.phoneFromFileToMap(inputStream));
+        return p;
+    }
 
     private Manufacturer getRandomManufacturer() {
         final Manufacturer[] values = Manufacturer.values();
