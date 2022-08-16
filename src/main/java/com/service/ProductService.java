@@ -113,10 +113,10 @@ public abstract class ProductService <T extends Product>{
                 result.add(i);
             }
         }
+
         return result;
     }
 
-    public abstract T productFromMap(Map<String,Object> map);
-
+    //public abstract T productFromMap(Map<String,Object> map);
 
 }

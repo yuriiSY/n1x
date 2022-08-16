@@ -49,8 +49,8 @@ public class TabletService extends ProductService<Tablet> {
         );
     }
 
-    @Override
-    public Tablet productFromMap(Map<String, Object> map) {
+
+    private Tablet productFromMap(Map<String, Object> map) {
         Function<Map<String,Object>,Tablet> function = (m) -> {
             Tablet tablet  = new Tablet((String) m.get("title"),
                     (Integer) m.get("count"),

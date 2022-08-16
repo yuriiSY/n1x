@@ -70,8 +70,8 @@ public class TelevisionService extends ProductService<Television> {
                 .anyMatch(d -> d.equals(detail));
     }
 
-    @Override
-    public Television productFromMap(Map<String, Object> map) {
+
+    private Television productFromMap(Map<String, Object> map) {
         Function<Map<String,Object>,Television> function = (m) -> {
             Television television = new Television((String) m.get("title"),
                     (Integer) m.get("count"),

@@ -1,10 +1,16 @@
 package com.service;
 
 import com.model.Manufacturer;
+import com.model.OperationSystem;
 import com.model.Phone;
+import com.parser.JsonCompiler;
+import com.parser.XmlParser;
 import com.repository.CrudRepository;
 import com.repository.PhoneRepository;
 
+import java.io.InputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -45,17 +51,31 @@ public class PhoneService extends ProductService<Phone> {
         );
     }
 
-    @Override
-    public Phone productFromMap(Map<String,Object> map){
+    private Phone productFromMap(Map<String,Object> map){
         Function<Map<String,Object>,Phone> function = (m) -> {
             Phone phone = new Phone((String) m.get("title"),
-                    (Integer) m.get("count"),
-                    (Integer) m.get("price"),
+                    Integer.parseInt((String) m.get("count")),
+                    Integer.parseInt((String) m.get("price")),
                     (String) m.get("model"),
-                    Manufacturer.APPLE);
+                    Manufacturer.APPLE,
+                    new OperationSystem((String) m.get("designation"), Integer.parseInt((String) m.get("version"))),
+                    LocalDateTime.parse((CharSequence) m.get("created"), DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))
+                    );
             return phone;
         };
         return function.apply(map);
+    }
+
+    public Phone xmlPhoneFromMap(InputStream inputStream){
+        XmlParser xmlParser = new XmlParser();
+        Phone p = productFromMap(xmlParser.phoneFromFileToMap(inputStream));
+        return p;
+    }
+
+    public Phone jsonPhoneFromMap(InputStream inputStream){
+        JsonCompiler jsonCompiler = new JsonCompiler();
+        Phone p = productFromMap(jsonCompiler.phoneFromFileToMap(inputStream));
+        return p;
     }
 
     private Manufacturer getRandomManufacturer() {

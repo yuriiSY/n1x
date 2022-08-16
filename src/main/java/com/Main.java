@@ -1,17 +1,12 @@
 package com;
 
-import com.command.Command;
-import com.command.Commands;
-import com.command.UserInputUtil;
 import com.model.*;
-import com.model.comparator.ProductComporator;
-import com.repository.PhoneRepository;
-import com.repository.TabletRepository;
-import com.repository.TelevisionRepository;
+import com.parser.JsonCompiler;
+import com.parser.XmlParser;
 import com.service.*;
 
+import java.io.InputStream;
 import java.util.*;
-import java.util.logging.Logger;
 
 
 public class Main {
@@ -20,41 +15,57 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
-        TelevisionService p = TelevisionService.getInstance();
 
-        System.out.println("Map to product");
-        Map<String, Object> map = new HashMap<>();
-        map.put("title", "Phone - 222");
-        map.put("model", "Model - 88");
-        map.put("price", 123);
-        map.put("count", 48);
-        Phone po = PHONE_SERVICE.productFromMap(map);
-        System.out.println(po.toString());
+        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+        InputStream inputStreamXml = loader.getResourceAsStream("phone.xml");
+        PhoneService PHONE_SERVICE = PhoneService.getInstance();
 
-        PHONE_SERVICE.createAndSave(5);
-        PHONE_SERVICE.printAll();
-        System.out.println("PREDICATE");
-        System.out.println(PHONE_SERVICE.isValid.test(PHONE_SERVICE.getAll()));
-        PHONE_SERVICE.save(new Phone("Title1", 4, 0.0, "Model", Manufacturer.APPLE));
+        Phone phone = PHONE_SERVICE.xmlPhoneFromMap(inputStreamXml);
+        System.out.println(phone.toString());
 
-        System.out.println("Products which does not have Price");
-        List<Phone> noPrice = PHONE_SERVICE.isPrice();
-        System.out.println(noPrice);
 
-        System.out.println("Summary Statistics");
-        System.out.println(PHONE_SERVICE.summaryStatistics());
+        System.out.println("===============");
 
-        System.out.print("(filter)enter price: ");
-        Double n = SCANNER.nextDouble();
-        System.out.println();
-        List<Phone> l = PHONE_SERVICE.filterMoreThan(n);
-        System.out.println("Map:" + l);
+        InputStream inputStreamJson = loader.getResourceAsStream("phone.json");
+        Phone phone1 = PHONE_SERVICE.jsonPhoneFromMap(inputStreamJson);
+        System.out.println(phone1.toString());
 
-        System.out.println("DETAILS");
-        String s = SCANNER.next();
-        System.out.println(p.findDetail(s));
 
+//        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
+//        TelevisionService p = TelevisionService.getInstance();
+//
+//        System.out.println("Map to product");
+//        Map<String, Object> map = new HashMap<>();
+//        map.put("title", "Phone - 222");
+//        map.put("model", "Model - 88");
+//        map.put("price", 123);
+//        map.put("count", 48);
+//        Phone po = PHONE_SERVICE.productFromMap(map);
+//        System.out.println(po.toString());
+//
+//        PHONE_SERVICE.createAndSave(5);
+//        PHONE_SERVICE.printAll();
+//        System.out.println("PREDICATE");
+//        System.out.println(PHONE_SERVICE.isValid.test(PHONE_SERVICE.getAll()));
+//        PHONE_SERVICE.save(new Phone("Title1", 4, 0.0, "Model", Manufacturer.APPLE));
+//
+//        System.out.println("Products which does not have Price");
+//        List<Phone> noPrice = PHONE_SERVICE.isPrice();
+//        System.out.println(noPrice);
+//
+//        System.out.println("Summary Statistics");
+//        System.out.println(PHONE_SERVICE.summaryStatistics());
+//
+//        System.out.print("(filter)enter price: ");
+//        Double n = SCANNER.nextDouble();
+//        System.out.println();
+//        List<Phone> l = PHONE_SERVICE.filterMoreThan(n);
+//        System.out.println("Map:" + l);
+//
+//        System.out.println("DETAILS");
+//        String s = SCANNER.next();
+//        System.out.println(p.findDetail(s));
+//
 
 //        Tree tree = new Tree(new ProductComporator());
 //        tree.add(new Phone("Title2", 4, 8.0, "Model", Manufacturer.APPLE));
