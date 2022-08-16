@@ -5,10 +5,15 @@ import com.model.Phone;
 import com.repository.CrudRepository;
 import com.repository.PhoneRepository;
 
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+
 public class PhoneService extends ProductService<Phone> {
 
     private final PhoneRepository repository;
     private static PhoneService instance;
+
 
     private PhoneService(final PhoneRepository repository) {
         super(repository);
@@ -40,10 +45,23 @@ public class PhoneService extends ProductService<Phone> {
         );
     }
 
+    @Override
+    public Phone productFromMap(Map<String,Object> map){
+        Function<Map<String,Object>,Phone> function = (m) -> {
+            Phone phone = new Phone((String) m.get("title"),
+                    (Integer) m.get("count"),
+                    (Integer) m.get("price"),
+                    (String) m.get("model"),
+                    Manufacturer.APPLE);
+            return phone;
+        };
+        return function.apply(map);
+    }
 
     private Manufacturer getRandomManufacturer() {
         final Manufacturer[] values = Manufacturer.values();
         final int index = RANDOM.nextInt(values.length);
         return values[index];
     }
+
 }

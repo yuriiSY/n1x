@@ -11,6 +11,8 @@ public class TelevisionRepository implements CrudRepository<Television>{
 
     private static TelevisionRepository instance;
 
+
+
     private TelevisionRepository() {
         this.televisions = new LinkedList<>();
     }

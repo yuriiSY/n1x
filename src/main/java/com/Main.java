@@ -20,6 +20,42 @@ public class Main {
 
     public static void main(String[] args) {
 
+        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
+        TelevisionService p = TelevisionService.getInstance();
+
+        System.out.println("Map to product");
+        Map<String, Object> map = new HashMap<>();
+        map.put("title", "Phone - 222");
+        map.put("model", "Model - 88");
+        map.put("price", 123);
+        map.put("count", 48);
+        Phone po = PHONE_SERVICE.productFromMap(map);
+        System.out.println(po.toString());
+
+        PHONE_SERVICE.createAndSave(5);
+        PHONE_SERVICE.printAll();
+        System.out.println("PREDICATE");
+        System.out.println(PHONE_SERVICE.isValid.test(PHONE_SERVICE.getAll()));
+        PHONE_SERVICE.save(new Phone("Title1", 4, 0.0, "Model", Manufacturer.APPLE));
+
+        System.out.println("Products which does not have Price");
+        List<Phone> noPrice = PHONE_SERVICE.isPrice();
+        System.out.println(noPrice);
+
+        System.out.println("Summary Statistics");
+        System.out.println(PHONE_SERVICE.summaryStatistics());
+
+        System.out.print("(filter)enter price: ");
+        Double n = SCANNER.nextDouble();
+        System.out.println();
+        List<Phone> l = PHONE_SERVICE.filterMoreThan(n);
+        System.out.println("Map:" + l);
+
+        System.out.println("DETAILS");
+        String s = SCANNER.next();
+        System.out.println(p.findDetail(s));
+
+
 //        Tree tree = new Tree(new ProductComporator());
 //        tree.add(new Phone("Title2", 4, 8.0, "Model", Manufacturer.APPLE));
 //        tree.add(new Phone("Title1", 4, 9.0, "Model", Manufacturer.APPLE));
@@ -32,12 +68,12 @@ public class Main {
 //        System.out.println(tree.sumOfPricesLeftBranch());
 //        tree.printTree();
 
-        final Commands[] values = Commands.values();
-        boolean exit;
-
-        do {
-            exit = UserInputUtil.userAction(values);
-        } while (!exit);
+//        final Commands[] values = Commands.values();
+//        boolean exit;
+//
+//        do {
+//            exit = UserInputUtil.userAction(values);
+//        } while (!exit);
 
 
         /*
@@ -139,5 +175,5 @@ public class Main {
     }
 */
 
-        }
+    }
 }
