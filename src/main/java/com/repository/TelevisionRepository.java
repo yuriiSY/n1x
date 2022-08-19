@@ -1,10 +1,12 @@
 package com.repository;
 
+import com.annotations.MyAutowired;
+import com.annotations.MySingleton;
 import com.model.Tablet;
 import com.model.Television;
 
 import java.util.*;
-
+@MySingleton
 public class TelevisionRepository implements CrudRepository<Television>{
 
     private final List<Television> televisions;
@@ -12,7 +14,7 @@ public class TelevisionRepository implements CrudRepository<Television>{
     private static TelevisionRepository instance;
 
 
-
+@MyAutowired
     private TelevisionRepository() {
         this.televisions = new LinkedList<>();
     }

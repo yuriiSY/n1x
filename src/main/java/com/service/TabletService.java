@@ -1,5 +1,7 @@
 package com.service;
 
+import com.annotations.MyAutowired;
+import com.annotations.MySingleton;
 import com.model.Manufacturer;
 import com.model.Phone;
 import com.model.Tablet;
@@ -12,12 +14,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.function.Function;
-
+@MySingleton
 public class TabletService extends ProductService<Tablet> {
 
     private final TabletRepository repository;
     private static TabletService instance;
-
+@MyAutowired
     private TabletService(final TabletRepository repository) {
         super(repository);
         this.repository = repository;

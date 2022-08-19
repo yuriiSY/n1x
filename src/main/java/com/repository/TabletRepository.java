@@ -1,15 +1,17 @@
 package com.repository;
 
+import com.annotations.MyAutowired;
+import com.annotations.MySingleton;
 import com.model.Phone;
 import com.model.Tablet;
 
 import java.util.*;
-
+@MySingleton
 public class TabletRepository implements CrudRepository<Tablet> {
 
     private final List<Tablet> tablets;
     private static TabletRepository instance;
-
+@MyAutowired
     private TabletRepository() {
         this.tablets = new LinkedList<>();
     }
