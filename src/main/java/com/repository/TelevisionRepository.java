@@ -12,8 +12,6 @@ public class TelevisionRepository implements CrudRepository<Television>{
     private final List<Television> televisions;
 
     private static TelevisionRepository instance;
-
-
 @MyAutowired
     private TelevisionRepository() {
         this.televisions = new LinkedList<>();

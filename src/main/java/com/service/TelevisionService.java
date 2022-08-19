@@ -21,7 +21,6 @@ import java.util.function.Function;
 public class TelevisionService extends ProductService<Television> {
     private final TelevisionRepository repository;
     private static TelevisionService instance;
-
 @MyAutowired
     private TelevisionService(final TelevisionRepository repository) {
         super(repository);

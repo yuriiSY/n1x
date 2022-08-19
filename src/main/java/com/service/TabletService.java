@@ -16,7 +16,6 @@ import java.util.Random;
 import java.util.function.Function;
 @MySingleton
 public class TabletService extends ProductService<Tablet> {
-
     private final TabletRepository repository;
     private static TabletService instance;
 @MyAutowired

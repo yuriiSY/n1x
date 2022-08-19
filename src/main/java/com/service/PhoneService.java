@@ -19,10 +19,8 @@ import java.util.function.Function;
 
 @MySingleton
 public class PhoneService extends ProductService<Phone> {
-
     private final PhoneRepository repository;
     private static PhoneService instance;
-
 @MyAutowired
     private PhoneService(final PhoneRepository repository) {
         super(repository);

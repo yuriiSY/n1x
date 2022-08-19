@@ -8,7 +8,6 @@ import com.model.Tablet;
 import java.util.*;
 @MySingleton
 public class TabletRepository implements CrudRepository<Tablet> {
-
     private final List<Tablet> tablets;
     private static TabletRepository instance;
 @MyAutowired

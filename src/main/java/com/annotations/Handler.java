@@ -12,9 +12,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 public class Handler {
-
     Map<Class<?>, Object> cache;
-
 
     public Handler() {
         cache = new HashMap<>();
@@ -45,7 +43,6 @@ public class Handler {
                     });
         });
     }
-
     private void cacheService(Set<Class<?>> annotatedClasses) {
         annotatedClasses.forEach(aClass -> {
             Arrays.stream(aClass.getDeclaredConstructors())
