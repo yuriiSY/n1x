@@ -1,25 +1,19 @@
-package com.service;
+package com.service.mainService;
 
 import com.annotations.MyAutowired;
 import com.annotations.MySingleton;
 import com.model.Manufacturer;
-import com.model.Phone;
 import com.model.Tablet;
-import com.repository.CrudRepository;
-import com.repository.PhoneRepository;
-import com.repository.TabletRepository;
+import com.repository.dbRepository.TabletRepositoryDB;
 
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.function.Function;
 @MySingleton
 public class TabletService extends ProductService<Tablet> {
-    private final TabletRepository repository;
+    private final TabletRepositoryDB repository;
     private static TabletService instance;
 @MyAutowired
-    private TabletService(final TabletRepository repository) {
+    private TabletService(final TabletRepositoryDB repository) {
         super(repository);
         this.repository = repository;
     }
@@ -27,12 +21,12 @@ public class TabletService extends ProductService<Tablet> {
 
     public static TabletService getInstance() {
         if (instance == null) {
-            instance = new TabletService(TabletRepository.getInstance());
+            instance = new TabletService(TabletRepositoryDB.getInstance());
         }
         return instance;
     }
 
-    public static TabletService getInstance(final TabletRepository repository) {
+    public static TabletService getInstance(final TabletRepositoryDB repository) {
         if (instance == null) {
             instance = new TabletService(repository);
         }

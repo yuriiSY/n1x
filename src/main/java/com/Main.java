@@ -1,14 +1,24 @@
 package com;
 
 import com.annotations.Handler;
+import com.command.Commands;
+import com.command.UserInputUtil;
 import com.model.*;
 import com.parser.JsonCompiler;
 import com.parser.XmlParser;
+import com.repository.dbRepository.InvoiceRepositoryDB;
+import com.repository.dbRepository.PhoneRepositoryDB;
 import com.service.*;
+import com.service.mainService.InvoiceService;
+import com.service.mainService.PhoneService;
+import com.service.mainService.ProductService;
+import com.service.mainService.TelevisionService;
+import javassist.CtConstructor;
 import javassist.tools.reflect.Reflection;
 import org.reflections.Reflections;
 
 import java.io.InputStream;
+import java.lang.reflect.Constructor;
 import java.util.*;
 
 
@@ -18,9 +28,26 @@ public class Main {
 
     public static void main(String[] args) {
 
+        final Commands[] values = Commands.values();
+        boolean exit;
 
-        Handler handler = new Handler();
-        System.out.println(handler.createCache());
+        do {
+            exit = UserInputUtil.userAction(values);
+        } while (!exit);
+
+        InvoiceService invoiceService = InvoiceService.getInstance();
+        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
+        ProductService<Television> TV_SERVICE = TelevisionService.getInstance();
+        List<Product> products = new ArrayList<>();
+        products.add(PHONE_SERVICE.getAll().get(2));
+        products.add(TV_SERVICE.getAll().get(1));
+        invoiceService.createInvoice(products);
+        System.out.println(invoiceService.moreThanX(32));
+        System.out.println(invoiceService.countOfInvoice());
+        System.out.println(invoiceService.groupBySum());
+
+//        Handler handler = new Handler();
+//        System.out.println(handler.createCache());
 
 //        ClassLoader loader = Thread.currentThread().getContextClassLoader();
 //        InputStream inputStreamXml = loader.getResourceAsStream("phone.xml");
@@ -85,14 +112,18 @@ public class Main {
 //        System.out.println(tree.sumOfPricesLeftBranch());
 //        tree.printTree();
 
-//        final Commands[] values = Commands.values();
-//        boolean exit;
-//
-//        do {
-//            exit = UserInputUtil.userAction(values);
-//        } while (!exit);
 
+//        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
+//        ProductService<Phone> TV_SERVICE = PhoneService.getInstance();
+//        List<Product> products = new ArrayList<>();
+//        products.add(PHONE_SERVICE.getAll().get(0));
+//        products.add(TV_SERVICE.getAll().get(0));
+//        invoiceService.createInvoice(products);
+        System.out.println("try");
 
+        System.out.println(invoiceService.moreThanX(32));
+        System.out.println(invoiceService.countOfInvoice());
+        System.out.println(invoiceService.groupBySum());
         /*
         Order order = new Order();
         order.add(new Phone("Title0", 6, 6.0, "Model", Manufacturer.APPLE));
@@ -191,6 +222,5 @@ public class Main {
         container.printerContainer();
     }
 */
-
     }
 }

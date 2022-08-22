@@ -1,4 +1,4 @@
-package com.service;
+package com.service.mainService;
 
 import com.annotations.MyAutowired;
 import com.annotations.MySingleton;
@@ -7,22 +7,20 @@ import com.model.OperationSystem;
 import com.model.Phone;
 import com.parser.JsonCompiler;
 import com.parser.XmlParser;
-import com.repository.CrudRepository;
-import com.repository.PhoneRepository;
+import com.repository.dbRepository.PhoneRepositoryDB;
 
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
 @MySingleton
 public class PhoneService extends ProductService<Phone> {
-    private final PhoneRepository repository;
+    private final PhoneRepositoryDB repository;
     private static PhoneService instance;
 @MyAutowired
-    private PhoneService(final PhoneRepository repository) {
+    private PhoneService(final PhoneRepositoryDB repository) {
         super(repository);
         this.repository = repository;
     }
@@ -30,12 +28,12 @@ public class PhoneService extends ProductService<Phone> {
 
     public static PhoneService getInstance() {
         if (instance == null) {
-            instance = new PhoneService(PhoneRepository.getInstance());
+            instance = new PhoneService(PhoneRepositoryDB.getInstance());
         }
         return instance;
     }
 
-    public static PhoneService getInstance(final PhoneRepository repository) {
+    public static PhoneService getInstance(final PhoneRepositoryDB repository) {
         if (instance == null) {
             instance = new PhoneService(repository);
         }
