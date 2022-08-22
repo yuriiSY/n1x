@@ -29,5 +29,6 @@ public class Invoice {
                 ", products=" + products +
                 ", time=" + time +
                 '}';
+
     }
 }
