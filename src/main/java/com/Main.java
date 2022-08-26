@@ -1,9 +1,12 @@
 package com;
 
+import com.annotations.Handler;
 import com.model.*;
 import com.parser.JsonCompiler;
 import com.parser.XmlParser;
 import com.service.*;
+import javassist.tools.reflect.Reflection;
+import org.reflections.Reflections;
 
 import java.io.InputStream;
 import java.util.*;
@@ -16,20 +19,23 @@ public class Main {
     public static void main(String[] args) {
 
 
-        ClassLoader loader = Thread.currentThread().getContextClassLoader();
-        InputStream inputStreamXml = loader.getResourceAsStream("phone.xml");
-        PhoneService PHONE_SERVICE = PhoneService.getInstance();
+        Handler handler = new Handler();
+        System.out.println(handler.createCache());
 
-        Phone phone = PHONE_SERVICE.xmlPhoneFromMap(inputStreamXml);
-        System.out.println(phone.toString());
-
-
-        System.out.println("===============");
-
-        InputStream inputStreamJson = loader.getResourceAsStream("phone.json");
-        Phone phone1 = PHONE_SERVICE.jsonPhoneFromMap(inputStreamJson);
-        System.out.println(phone1.toString());
-
+//        ClassLoader loader = Thread.currentThread().getContextClassLoader();
+//        InputStream inputStreamXml = loader.getResourceAsStream("phone.xml");
+//        PhoneService PHONE_SERVICE = PhoneService.getInstance();
+//
+//        Phone phone = PHONE_SERVICE.xmlPhoneFromMap(inputStreamXml);
+//        System.out.println(phone.toString());
+//
+//
+//        System.out.println("===============");
+//
+//        InputStream inputStreamJson = loader.getResourceAsStream("phone.json");
+//        Phone phone1 = PHONE_SERVICE.jsonPhoneFromMap(inputStreamJson);
+//        System.out.println(phone1.toString());
+///////////////
 
 //        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
 //        TelevisionService p = TelevisionService.getInstance();

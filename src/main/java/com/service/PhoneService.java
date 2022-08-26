@@ -1,5 +1,7 @@
 package com.service;
 
+import com.annotations.MyAutowired;
+import com.annotations.MySingleton;
 import com.model.Manufacturer;
 import com.model.OperationSystem;
 import com.model.Phone;
@@ -15,12 +17,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+@MySingleton
 public class PhoneService extends ProductService<Phone> {
-
     private final PhoneRepository repository;
     private static PhoneService instance;
-
-
+@MyAutowired
     private PhoneService(final PhoneRepository repository) {
         super(repository);
         this.repository = repository;
