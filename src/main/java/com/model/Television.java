@@ -3,14 +3,19 @@ package com.model;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import java.util.ArrayList;
 import java.util.List;
 @Getter
 @Setter
+@Entity
 public class Television extends Product{
 
-    private final String model;
-    private final Manufacturer manufacturer;
+    @Column
+    private  String model;
+    @Column
+    private  Manufacturer manufacturer;
 
    // private List<String> details;
 
@@ -20,6 +25,10 @@ public class Television extends Product{
         this.model = model;
         this.manufacturer = manufacturer;
     //    this.details = details;
+    }
+
+    public Television() {
+
     }
 
 //    public List<String> getDetails() {

@@ -6,6 +6,7 @@ import com.model.Phone;
 import com.model.Product;
 import com.repository.dbRepository.InvoiceRepositoryDB;
 import com.repository.dbRepository.PhoneRepositoryDB;
+import com.repository.hibernateRepository.InvoiceRepositoryHibernate;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -13,23 +14,23 @@ import java.util.List;
 import java.util.Map;
 
 public class InvoiceService {
-    private final InvoiceRepositoryDB repository;
+    private final InvoiceRepositoryHibernate repository;
     private static InvoiceService instance;
 
     @MyAutowired
-    private InvoiceService(final InvoiceRepositoryDB repository) {
+    private InvoiceService(final InvoiceRepositoryHibernate repository) {
         this.repository = repository;
     }
 
 
     public static InvoiceService getInstance() {
         if (instance == null) {
-            instance = new InvoiceService(InvoiceRepositoryDB.getInstance());
+            instance = new InvoiceService(InvoiceRepositoryHibernate.getInstance());
         }
         return instance;
     }
 
-    public static InvoiceService getInstance(final InvoiceRepositoryDB repository) {
+    public static InvoiceService getInstance(final InvoiceRepositoryHibernate repository) {
         if (instance == null) {
             instance = new InvoiceService(repository);
         }
@@ -47,15 +48,15 @@ public class InvoiceService {
         repository.save(invoice);
     }
 
-    public List<Invoice> moreThanX(double x) {
-        return repository.moreThanX(x);
-    }
-
-    public int countOfInvoice() {
-        return repository.countInvoices();
-    }
-
-    public Map<Double,Integer> groupBySum() {
-        return repository.groupBySum();
-    }
+//    public List<Invoice> moreThanX(double x) {
+//        return repository.moreThanX(x);
+//    }
+//
+//    public int countOfInvoice() {
+//        return repository.countInvoices();
+//    }
+//
+//    public Map<Double,Integer> groupBySum() {
+//        return repository.groupBySum();
+//    }
 }

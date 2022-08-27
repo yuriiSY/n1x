@@ -1,4 +1,4 @@
-package com.repository;
+package com.repository.crudRepository;
 
 import com.model.Phone;
 

@@ -8,6 +8,8 @@ import com.parser.JsonCompiler;
 import com.parser.XmlParser;
 import com.repository.dbRepository.InvoiceRepositoryDB;
 import com.repository.dbRepository.PhoneRepositoryDB;
+import com.repository.hibernateRepository.InvoiceRepositoryHibernate;
+import com.repository.hibernateRepository.PhoneRepositoryHibernate;
 import com.service.*;
 import com.service.mainService.InvoiceService;
 import com.service.mainService.PhoneService;
@@ -28,6 +30,11 @@ public class Main {
 
     public static void main(String[] args) {
 
+
+        PhoneRepositoryHibernate phoneRepositoryHibernate = new PhoneRepositoryHibernate();
+        phoneRepositoryHibernate.save(new Phone("Title1", 4, 0.0, "Model", Manufacturer.APPLE));
+        String s = SCANNER.nextLine();
+        System.out.println(phoneRepositoryHibernate.findById(s));
         final Commands[] values = Commands.values();
         boolean exit;
 
@@ -36,15 +43,27 @@ public class Main {
         } while (!exit);
 
         InvoiceService invoiceService = InvoiceService.getInstance();
-        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
-        ProductService<Television> TV_SERVICE = TelevisionService.getInstance();
         List<Product> products = new ArrayList<>();
-        products.add(PHONE_SERVICE.getAll().get(2));
-        products.add(TV_SERVICE.getAll().get(1));
+        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
+        products.add(PHONE_SERVICE.getAll().get(0));
+        products.add(PHONE_SERVICE.getAll().get(1));
         invoiceService.createInvoice(products);
-        System.out.println(invoiceService.moreThanX(32));
-        System.out.println(invoiceService.countOfInvoice());
-        System.out.println(invoiceService.groupBySum());
+        invoiceService.createInvoice(products);
+
+        InvoiceRepositoryHibernate invoiceRepositoryHibernate = new InvoiceRepositoryHibernate();
+        double S = SCANNER.nextDouble();
+        System.out.println(invoiceRepositoryHibernate.moreThanX(S));
+        System.out.println(invoiceRepositoryHibernate.groupBySum());
+//        InvoiceService invoiceService = InvoiceService.getInstance();
+//        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
+//        ProductService<Television> TV_SERVICE = TelevisionService.getInstance();
+//        List<Product> products = new ArrayList<>();
+//        products.add(PHONE_SERVICE.getAll().get(2));
+//        products.add(TV_SERVICE.getAll().get(1));
+//        invoiceService.createInvoice(products);
+//        System.out.println(invoiceService.moreThanX(32));
+//        System.out.println(invoiceService.countOfInvoice());
+//        System.out.println(invoiceService.groupBySum());
 
 //        Handler handler = new Handler();
 //        System.out.println(handler.createCache());
@@ -119,11 +138,11 @@ public class Main {
 //        products.add(PHONE_SERVICE.getAll().get(0));
 //        products.add(TV_SERVICE.getAll().get(0));
 //        invoiceService.createInvoice(products);
-        System.out.println("try");
-
-        System.out.println(invoiceService.moreThanX(32));
-        System.out.println(invoiceService.countOfInvoice());
-        System.out.println(invoiceService.groupBySum());
+//        System.out.println("try");
+//
+//        System.out.println(invoiceService.moreThanX(32));
+//        System.out.println(invoiceService.countOfInvoice());
+//        System.out.println(invoiceService.groupBySum());
         /*
         Order order = new Order();
         order.add(new Phone("Title0", 6, 6.0, "Model", Manufacturer.APPLE));

@@ -3,7 +3,7 @@ package com.repository.simplRepository;
 import com.annotations.MyAutowired;
 import com.annotations.MySingleton;
 import com.model.Tablet;
-import com.repository.CrudRepository;
+import com.repository.crudRepository.CrudRepository;
 
 import java.util.*;
 @MySingleton

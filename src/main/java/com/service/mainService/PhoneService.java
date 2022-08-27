@@ -8,6 +8,7 @@ import com.model.Phone;
 import com.parser.JsonCompiler;
 import com.parser.XmlParser;
 import com.repository.dbRepository.PhoneRepositoryDB;
+import com.repository.hibernateRepository.PhoneRepositoryHibernate;
 
 import java.io.InputStream;
 import java.time.LocalDateTime;
@@ -17,10 +18,10 @@ import java.util.function.Function;
 
 @MySingleton
 public class PhoneService extends ProductService<Phone> {
-    private final PhoneRepositoryDB repository;
+    private final PhoneRepositoryHibernate repository;
     private static PhoneService instance;
 @MyAutowired
-    private PhoneService(final PhoneRepositoryDB repository) {
+    private PhoneService(final PhoneRepositoryHibernate repository) {
         super(repository);
         this.repository = repository;
     }
@@ -28,12 +29,12 @@ public class PhoneService extends ProductService<Phone> {
 
     public static PhoneService getInstance() {
         if (instance == null) {
-            instance = new PhoneService(PhoneRepositoryDB.getInstance());
+            instance = new PhoneService(PhoneRepositoryHibernate.getInstance());
         }
         return instance;
     }
 
-    public static PhoneService getInstance(final PhoneRepositoryDB repository) {
+    public static PhoneService getInstance(final PhoneRepositoryHibernate repository) {
         if (instance == null) {
             instance = new PhoneService(repository);
         }
