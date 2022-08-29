@@ -2,12 +2,11 @@ package com.service.mainService;
 
 import com.annotations.MyAutowired;
 import com.annotations.MySingleton;
-import com.model.Manufacturer;
-import com.model.OperationSystem;
-import com.model.Phone;
+import com.model.product.Manufacturer;
+import com.model.phone.OperationSystem;
+import com.model.phone.Phone;
 import com.parser.JsonCompiler;
 import com.parser.XmlParser;
-import com.repository.dbRepository.PhoneRepositoryDB;
 import com.repository.hibernateRepository.PhoneRepositoryHibernate;
 
 import java.io.InputStream;

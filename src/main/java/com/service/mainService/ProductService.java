@@ -1,10 +1,11 @@
 package com.service.mainService;
 
-import com.model.*;
 import com.model.comparator.ProductComporator;
 import com.model.comparator.SortByCount;
 import com.model.comparator.SortByName;
 import com.model.comparator.SortByPrice;
+import com.model.predicate.MyPredicate;
+import com.model.product.Product;
 import com.repository.crudRepository.CrudRepository;
 
 

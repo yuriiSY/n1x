@@ -2,7 +2,7 @@ package com.repository.simplRepository;
 
 import com.annotations.MyAutowired;
 import com.annotations.MySingleton;
-import com.model.Phone;
+import com.model.phone.Phone;
 import com.repository.crudRepository.CrudRepository;
 
 import java.util.*;

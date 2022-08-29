@@ -2,8 +2,8 @@ package com.service.mainService;
 
 import com.annotations.MyAutowired;
 import com.annotations.MySingleton;
-import com.model.Manufacturer;
-import com.model.Tablet;
+import com.model.product.Manufacturer;
+import com.model.tablet.Tablet;
 import com.repository.dbRepository.TabletRepositoryDB;
 
 import java.util.Map;

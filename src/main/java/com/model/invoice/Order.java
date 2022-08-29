@@ -1,6 +1,6 @@
-package com.model;
+package com.model.invoice;
 
-import javassist.expr.NewArray;
+import com.model.product.Product;
 
 import java.util.Date;
 import java.util.Iterator;

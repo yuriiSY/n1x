@@ -1,17 +1,12 @@
 package com.service.mainService;
 
 import com.annotations.MyAutowired;
-import com.model.Invoice;
-import com.model.Phone;
-import com.model.Product;
-import com.repository.dbRepository.InvoiceRepositoryDB;
-import com.repository.dbRepository.PhoneRepositoryDB;
+import com.model.invoice.Invoice;
+import com.model.product.Product;
 import com.repository.hibernateRepository.InvoiceRepositoryHibernate;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class InvoiceService {
     private final InvoiceRepositoryHibernate repository;
@@ -38,7 +33,7 @@ public class InvoiceService {
     }
 
     public void createInvoice(List<Product> products) {
-        Invoice invoice = new Invoice();
+        Invoice invoice = new Invoice(products);
         invoice.setProducts(products);
         double sum = products.stream()
                 .mapToDouble(Product::getPrice)

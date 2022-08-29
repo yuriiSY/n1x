@@ -1,21 +1,22 @@
-package com.model;
+package com.model.television;
 
+import com.model.product.Manufacturer;
+import com.model.product.Product;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import java.util.ArrayList;
-import java.util.List;
+
 @Getter
 @Setter
 @Entity
-public class Television extends Product{
+public class Television extends Product {
 
     @Column
     private  String model;
     @Column
-    private  Manufacturer manufacturer;
+    private Manufacturer manufacturer;
 
    // private List<String> details;
 

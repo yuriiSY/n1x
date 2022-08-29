@@ -1,8 +1,7 @@
 package com.repository.hibernateRepository;
 
 import com.config.HibernateFactoryUtill;
-import com.model.Tablet;
-import com.model.Television;
+import com.model.television.Television;
 import com.repository.crudRepository.CrudRepository;
 
 import javax.persistence.EntityManager;

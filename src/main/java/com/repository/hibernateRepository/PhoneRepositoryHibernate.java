@@ -1,12 +1,8 @@
 package com.repository.hibernateRepository;
 
 import com.config.HibernateFactoryUtill;
-import com.model.Phone;
+import com.model.phone.Phone;
 import com.repository.crudRepository.CrudRepository;
-import com.repository.dbRepository.PhoneRepositoryDB;
-import org.hibernate.Hibernate;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;

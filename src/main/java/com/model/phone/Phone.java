@@ -1,5 +1,7 @@
-package com.model;
+package com.model.phone;
 
+import com.model.product.Manufacturer;
+import com.model.product.Product;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,10 +16,10 @@ public class Phone extends Product {
     @Column
     private  String model;
     @Column
-    private  Manufacturer manufacturer;
+    private Manufacturer manufacturer;
     //private OperationSystem operationSystem;
     @Column
-    private LocalDateTime time;
+    private  LocalDateTime time;
 
     public Phone(String title, int count, double price, String model, Manufacturer manufacturer) {
         super(title, count, price);
@@ -42,7 +44,7 @@ public class Phone extends Product {
                 "model='" + model + '\'' +
                 ", manufacturer=" + manufacturer +
         //        ", operationSystem=" + operationSystem +
-                ", time=" + time +
+         //       ", time=" + time +
                 ", id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", count=" + count +

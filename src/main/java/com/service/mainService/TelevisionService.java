@@ -2,8 +2,8 @@ package com.service.mainService;
 
 import com.annotations.MyAutowired;
 import com.annotations.MySingleton;
-import com.model.Manufacturer;
-import com.model.Television;
+import com.model.product.Manufacturer;
+import com.model.television.Television;
 import com.repository.dbRepository.TelevisionRepositoryDB;
 
 import java.util.Arrays;

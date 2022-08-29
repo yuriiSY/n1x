@@ -1,7 +1,7 @@
 package com.repository.hibernateRepository;
 
 import com.config.HibernateFactoryUtill;
-import com.model.Invoice;
+import com.model.invoice.Invoice;
 import com.repository.crudRepository.CrudRepository;
 
 import javax.persistence.EntityManager;
@@ -91,4 +91,10 @@ public class InvoiceRepositoryHibernate implements CrudRepository<Invoice> {
         }
         return map;
     }
+
+
+
 }
+
+
+

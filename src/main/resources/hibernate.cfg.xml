@@ -9,10 +9,10 @@
                     <property name="hibernate.connection.password">1234</property>
                     <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/n1x</property>
                     <property name="hibernate.hbm2ddl.auto">create</property>
-                    <mapping class="com.model.Phone"/>
-                    <mapping class="com.model.Tablet"/>
-                    <mapping class="com.model.Television"/>
-                    <mapping class="com.model.Invoice"/>
+                    <mapping class="com.model.phone.Phone"/>
+                    <mapping class="com.model.tablet.Tablet"/>
+                    <mapping class="com.model.television.Television"/>
+                    <mapping class="com.model.invoice.Invoice"/>
                 </session-factory>
 
 </hibernate-configuration>

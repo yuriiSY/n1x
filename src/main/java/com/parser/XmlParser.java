@@ -1,8 +1,5 @@
 package com.parser;
 
-import com.model.Phone;
-
-import javax.swing.*;
 import java.io.*;
 import java.util.*;
 import java.util.regex.Matcher;

@@ -1,7 +1,7 @@
 package com.service;
 
-import com.model.Manufacturer;
-import com.model.Phone;
+import com.model.product.Manufacturer;
+import com.model.phone.Phone;
 import com.repository.simplRepository.PhoneRepository;
 import com.service.mainService.PhoneService;
 import org.junit.jupiter.api.Assertions;

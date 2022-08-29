@@ -1,26 +1,12 @@
 package com;
 
-import com.annotations.Handler;
-import com.command.Commands;
-import com.command.UserInputUtil;
-import com.model.*;
-import com.parser.JsonCompiler;
-import com.parser.XmlParser;
-import com.repository.dbRepository.InvoiceRepositoryDB;
-import com.repository.dbRepository.PhoneRepositoryDB;
-import com.repository.hibernateRepository.InvoiceRepositoryHibernate;
-import com.repository.hibernateRepository.PhoneRepositoryHibernate;
-import com.service.*;
-import com.service.mainService.InvoiceService;
-import com.service.mainService.PhoneService;
-import com.service.mainService.ProductService;
-import com.service.mainService.TelevisionService;
-import javassist.CtConstructor;
-import javassist.tools.reflect.Reflection;
-import org.reflections.Reflections;
+import com.model.invoice.Invoice;
+import com.model.phone.Phone;
+import com.model.product.Manufacturer;
+import com.model.product.Product;
+import com.repository.mongoRepository.InvoiceMongoRepository;
+import com.repository.mongoRepository.PhoneMongoRepository;
 
-import java.io.InputStream;
-import java.lang.reflect.Constructor;
 import java.util.*;
 
 
@@ -30,31 +16,37 @@ public class Main {
 
     public static void main(String[] args) {
 
-
-        PhoneRepositoryHibernate phoneRepositoryHibernate = new PhoneRepositoryHibernate();
-        phoneRepositoryHibernate.save(new Phone("Title1", 4, 0.0, "Model", Manufacturer.APPLE));
-        String s = SCANNER.nextLine();
-        System.out.println(phoneRepositoryHibernate.findById(s));
-        final Commands[] values = Commands.values();
-        boolean exit;
-
-        do {
-            exit = UserInputUtil.userAction(values);
-        } while (!exit);
-
-        InvoiceService invoiceService = InvoiceService.getInstance();
-        List<Product> products = new ArrayList<>();
-        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
-        products.add(PHONE_SERVICE.getAll().get(0));
-        products.add(PHONE_SERVICE.getAll().get(1));
-        invoiceService.createInvoice(products);
-        invoiceService.createInvoice(products);
-
-        InvoiceRepositoryHibernate invoiceRepositoryHibernate = new InvoiceRepositoryHibernate();
-        double S = SCANNER.nextDouble();
-        System.out.println(invoiceRepositoryHibernate.moreThanX(S));
-        System.out.println(invoiceRepositoryHibernate.groupBySum());
+    //    MongoDatabase mongoDatabase = MongoConfig.connect("n1x");
+        PhoneMongoRepository phoneMongo = new PhoneMongoRepository();
+        InvoiceMongoRepository invoiceMongoRepository = new InvoiceMongoRepository();
+        List<Product> products = Arrays.asList(new Phone("Title1", 4, 12, "Model", Manufacturer.APPLE),new Phone("Title2", 4, 0.0, "Model", Manufacturer.APPLE));
+        invoiceMongoRepository.save(new Invoice(products));
+        Map<Double,Long> map = invoiceMongoRepository.groupBy();
+        System.out.println(map);
+//        PhoneRepositoryHibernate phoneRepositoryHibernate = new PhoneRepositoryHibernate();
+//        phoneRepositoryHibernate.save(new Phone("Title1", 4, 0.0, "Model", Manufacturer.APPLE));
+//        String s = SCANNER.nextLine();
+//        System.out.println(phoneRepositoryHibernate.findById(s));
+//        final Commands[] values = Commands.values();
+//        boolean exit;
+//
+//        do {
+//            exit = UserInputUtil.userAction(values);
+//        } while (!exit);
+//
 //        InvoiceService invoiceService = InvoiceService.getInstance();
+//        List<Product> products = new ArrayList<>();
+//        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
+//        products.add(PHONE_SERVICE.getAll().get(0));
+//        products.add(PHONE_SERVICE.getAll().get(1));
+//        invoiceService.createInvoice(products);
+//        invoiceService.createInvoice(products);
+//
+//        InvoiceRepositoryHibernate invoiceRepositoryHibernate = new InvoiceRepositoryHibernate();
+//        double S = SCANNER.nextDouble();
+//        System.out.println(invoiceRepositoryHibernate.moreThanX(S));
+//        System.out.println(invoiceRepositoryHibernate.groupBySum());
+////        InvoiceService invoiceService = InvoiceService.getInstance();
 //        ProductService<Phone> PHONE_SERVICE = PhoneService.getInstance();
 //        ProductService<Television> TV_SERVICE = TelevisionService.getInstance();
 //        List<Product> products = new ArrayList<>();

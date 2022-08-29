@@ -1,5 +1,6 @@
-package com.model;
+package com.model.invoice;
 
+import com.model.product.Product;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -24,9 +25,13 @@ public class Invoice {
     private List<Product> products;
     private LocalDateTime time;
 
-    public Invoice() {
-     //   this.id = UUID.randomUUID().toString();
+    public Invoice(List<Product> products) {
+        this.id = UUID.randomUUID().toString();
         this.time = LocalDateTime.now();
+        this.products =products;
+    }
+
+    public Invoice() {
     }
 
     @Override

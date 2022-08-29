@@ -1,7 +1,11 @@
 package com.repository.dbRepository;
 
 import com.config.JDBCConfig;
-import com.model.*;
+import com.model.invoice.Invoice;
+import com.model.phone.Phone;
+import com.model.product.Product;
+import com.model.tablet.Tablet;
+import com.model.television.Television;
 import com.repository.crudRepository.CrudInvoiceRepository;
 import lombok.SneakyThrows;
 
