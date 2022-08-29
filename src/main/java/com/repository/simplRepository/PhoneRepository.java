@@ -1,8 +1,9 @@
-package com.repository;
+package com.repository.simplRepository;
 
 import com.annotations.MyAutowired;
 import com.annotations.MySingleton;
 import com.model.Phone;
+import com.repository.CrudRepository;
 
 import java.util.*;
 

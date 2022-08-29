@@ -1,4 +1,4 @@
-package com.service;
+package com.service.mainService;
 
 import com.model.*;
 import com.model.comparator.ProductComporator;

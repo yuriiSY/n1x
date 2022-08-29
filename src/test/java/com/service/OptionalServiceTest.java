@@ -2,12 +2,10 @@ package com.service;
 
 import com.model.Manufacturer;
 import com.model.Phone;
-import com.repository.PhoneRepository;
+import com.repository.simplRepository.PhoneRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class OptionalServiceTest {
 

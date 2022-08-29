@@ -1,13 +1,13 @@
-package com.repository;
+package com.repository.simplRepository;
 
 import com.annotations.MyAutowired;
 import com.annotations.MySingleton;
-import com.model.Tablet;
 import com.model.Television;
+import com.repository.CrudRepository;
 
 import java.util.*;
 @MySingleton
-public class TelevisionRepository implements CrudRepository<Television>{
+public class TelevisionRepository implements CrudRepository<Television> {
 
     private final List<Television> televisions;
 

@@ -2,8 +2,7 @@ package com.service;
 
 import com.model.Manufacturer;
 import com.model.Phone;
-import com.model.Product;
-import com.repository.PhoneRepository;
+import com.repository.simplRepository.PhoneRepository;
 
 import java.util.LinkedList;
 import java.util.List;

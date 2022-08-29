@@ -47,7 +47,7 @@ public class UserInputUtil {
 
     private static int getUserInput(List<String> names, int length) {
         try {
-            if (length>0) {
+            if (length > 0) {
                 System.out.println("Please enter number between 0 and " + length);
             } else {
                 System.out.println("Which one");
@@ -56,7 +56,7 @@ public class UserInputUtil {
                 System.out.printf("%d) %s%n", i, names.get(i));
             }
             int input = Integer.parseInt(READER.readLine());
-            if (input >= 0 && input < length) {
+            if (input >= 0 && input <= length) {
                 return input;
             }
         }    catch (IOException | NumberFormatException e) {

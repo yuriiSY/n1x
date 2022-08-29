@@ -1,0 +1,95 @@
+-- Table: public.invoice
+
+-- DROP TABLE IF EXISTS public.invoice;
+
+CREATE TABLE IF NOT EXISTS public.invoice
+(
+    id character varying COLLATE pg_catalog."default" NOT NULL,
+    sum bigint,
+    "time" timestamp without time zone,
+    CONSTRAINT invoice_pkey PRIMARY KEY (id)
+)
+
+TABLESPACE pg_default;
+
+ALTER TABLE IF EXISTS public.invoice
+    OWNER to postgres;
+
+
+
+    -- Table: public.phone
+
+    -- DROP TABLE IF EXISTS public.phone;
+
+    CREATE TABLE IF NOT EXISTS public.phone
+    (
+        id character varying(128) COLLATE pg_catalog."default" NOT NULL,
+        title text COLLATE pg_catalog."default",
+        count integer,
+        price bigint,
+        model character varying(128) COLLATE pg_catalog."default",
+        manufacturer character varying(128) COLLATE pg_catalog."default",
+        invoice_id character varying(128) COLLATE pg_catalog."default",
+        CONSTRAINT phone_pkey PRIMARY KEY (id),
+        CONSTRAINT invoice_id FOREIGN KEY (invoice_id)
+            REFERENCES public.invoice (id) MATCH SIMPLE
+            ON UPDATE NO ACTION
+            ON DELETE NO ACTION
+    )
+
+    TABLESPACE pg_default;
+
+    ALTER TABLE IF EXISTS public.phone
+        OWNER to postgres;
+
+
+ -- Table: public.tablet
+
+ -- DROP TABLE IF EXISTS public.tablet;
+
+ CREATE TABLE IF NOT EXISTS public.tablet
+ (
+     id character varying(128) COLLATE pg_catalog."default" NOT NULL,
+     title text COLLATE pg_catalog."default",
+     count integer,
+     price bigint,
+     model character varying(128) COLLATE pg_catalog."default",
+     manufacturer character varying(128) COLLATE pg_catalog."default",
+     invoice_id character varying(128) COLLATE pg_catalog."default",
+     CONSTRAINT tablet_pkey PRIMARY KEY (id),
+     CONSTRAINT invoice_id FOREIGN KEY (invoice_id)
+         REFERENCES public.invoice (id) MATCH SIMPLE
+         ON UPDATE NO ACTION
+         ON DELETE NO ACTION
+ )
+
+ TABLESPACE pg_default;
+
+ ALTER TABLE IF EXISTS public.tablet
+     OWNER to postgres;
+
+
+     -- Table: public.television
+
+     -- DROP TABLE IF EXISTS public.television;
+
+     CREATE TABLE IF NOT EXISTS public.television
+     (
+         id character varying(128) COLLATE pg_catalog."default" NOT NULL,
+         title text COLLATE pg_catalog."default",
+         count integer,
+         model character varying(128) COLLATE pg_catalog."default",
+         manufacturer character varying(128) COLLATE pg_catalog."default",
+         price bigint,
+         invoice_id character varying(128) COLLATE pg_catalog."default",
+         CONSTRAINT "Television_pkey" PRIMARY KEY (id),
+         CONSTRAINT invoice_id FOREIGN KEY (invoice_id)
+             REFERENCES public.invoice (id) MATCH SIMPLE
+             ON UPDATE NO ACTION
+             ON DELETE NO ACTION
+     )
+
+     TABLESPACE pg_default;
+
+     ALTER TABLE IF EXISTS public.television
+         OWNER to postgres;

@@ -1,17 +1,11 @@
-package com.service;
+package com.service.mainService;
 
 import com.annotations.MyAutowired;
 import com.annotations.MySingleton;
-import com.model.Details;
 import com.model.Manufacturer;
-import com.model.Phone;
 import com.model.Television;
-import com.repository.CrudRepository;
-import com.repository.TabletRepository;
-import com.repository.TelevisionRepository;
+import com.repository.dbRepository.TelevisionRepositoryDB;
 
-import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -19,10 +13,10 @@ import java.util.function.Function;
 
 @MySingleton
 public class TelevisionService extends ProductService<Television> {
-    private final TelevisionRepository repository;
+    private final TelevisionRepositoryDB repository;
     private static TelevisionService instance;
 @MyAutowired
-    private TelevisionService(final TelevisionRepository repository) {
+    private TelevisionService(final TelevisionRepositoryDB repository) {
         super(repository);
         this.repository = repository;
     }
@@ -30,12 +24,12 @@ public class TelevisionService extends ProductService<Television> {
 
     public static TelevisionService getInstance() {
         if (instance == null) {
-            instance = new TelevisionService(TelevisionRepository.getInstance());
+            instance = new TelevisionService(TelevisionRepositoryDB.getInstance());
         }
         return instance;
     }
 
-    public static TelevisionService getInstance(final TelevisionRepository repository) {
+    public static TelevisionService getInstance(final TelevisionRepositoryDB repository) {
         if (instance == null) {
             instance = new TelevisionService(repository);
         }
@@ -50,8 +44,8 @@ public class TelevisionService extends ProductService<Television> {
                 RANDOM.nextInt(500),
                 RANDOM.nextDouble(1000.0),
                 "Model-" + RANDOM.nextInt(10),
-                getRandomManufacturer(),
-                detailsCreate()
+                getRandomManufacturer()
+        //        detailsCreate()
         );
     }
 
@@ -67,10 +61,10 @@ public class TelevisionService extends ProductService<Television> {
         return values[index];
     }
 
-    public boolean findDetail(String detail) {
-        return repository.getAll().stream().flatMap(tv -> tv.getDetails().stream())
-                .anyMatch(d -> d.equals(detail));
-    }
+//    public boolean findDetail(String detail) {
+//        return repository.getAll().stream().flatMap(tv -> tv.getDetails().stream())
+//                .anyMatch(d -> d.equals(detail));
+//    }
 
 
     private Television productFromMap(Map<String, Object> map) {
@@ -79,8 +73,8 @@ public class TelevisionService extends ProductService<Television> {
                     (Integer) m.get("count"),
                     (Integer) m.get("price"),
                     (String) m.get("model"),
-                    Manufacturer.APPLE,
-                    detailsCreate());
+                    Manufacturer.APPLE);
+            //        detailsCreate());
             return television;
         };
         return function.apply(map);

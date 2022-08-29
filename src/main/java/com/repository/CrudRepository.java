@@ -7,11 +7,11 @@ import java.util.Optional;
 
 public interface CrudRepository <T> {
 
-    void save(T phone);
+    void save(T product);
 
-    void saveAll(List<T> phones);
+    void saveAll(List<T> product);
 
-    boolean update(T phone);
+    boolean update(T product);
 
     boolean delete(String id);
 

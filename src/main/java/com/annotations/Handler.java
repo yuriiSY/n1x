@@ -1,11 +1,11 @@
 package com.annotations;
 
-import com.repository.PhoneRepository;
-import com.repository.TabletRepository;
-import com.repository.TelevisionRepository;
-import com.service.PhoneService;
-import com.service.TabletService;
-import com.service.TelevisionService;
+import com.repository.simplRepository.PhoneRepository;
+import com.repository.simplRepository.TabletRepository;
+import com.repository.simplRepository.TelevisionRepository;
+import com.service.mainService.PhoneService;
+import com.service.mainService.TabletService;
+import com.service.mainService.TelevisionService;
 import org.reflections.Reflections;
 
 import java.lang.reflect.InvocationTargetException;

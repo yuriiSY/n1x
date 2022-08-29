@@ -4,6 +4,10 @@ import com.model.Phone;
 import com.model.ProductType;
 import com.model.Tablet;
 import com.model.Television;
+import com.service.mainService.PhoneService;
+import com.service.mainService.ProductService;
+import com.service.mainService.TabletService;
+import com.service.mainService.TelevisionService;
 
 import java.util.Random;
 
@@ -21,7 +25,7 @@ public class ProductFactory {
         switch (type) {
             case PHONE -> PHONE_SERVICE.createAndSave(1);
             case TABLET -> TABLET_SERVICE.createAndSave(1);
-            case TELEVISION -> TABLET_SERVICE.createAndSave(1);
+            case TELEVISION -> TV_SERVICE.createAndSave(1);
             default -> throw new IllegalArgumentException("Unknown Product type: " + type);
         };
     }
