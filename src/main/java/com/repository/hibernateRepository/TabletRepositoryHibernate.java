@@ -1,8 +1,7 @@
 package com.repository.hibernateRepository;
 
 import com.config.HibernateFactoryUtill;
-import com.model.Phone;
-import com.model.Tablet;
+import com.model.tablet.Tablet;
 import com.repository.crudRepository.CrudRepository;
 
 import javax.persistence.EntityManager;

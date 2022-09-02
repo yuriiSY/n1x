@@ -1,6 +1,6 @@
 package com.model.comparator;
 
-import com.model.Product;
+import com.model.product.Product;
 
 import java.util.Comparator;
 

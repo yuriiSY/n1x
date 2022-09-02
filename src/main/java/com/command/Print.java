@@ -1,10 +1,10 @@
 package com.command;
 
 
-import com.model.Phone;
-import com.model.ProductType;
-import com.model.Tablet;
-import com.model.Television;
+import com.model.phone.Phone;
+import com.model.product.ProductType;
+import com.model.tablet.Tablet;
+import com.model.television.Television;
 import com.service.mainService.PhoneService;
 import com.service.mainService.ProductService;
 import com.service.mainService.TabletService;

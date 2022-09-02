@@ -1,6 +1,6 @@
 package com.repository.crudRepository;
 
-import com.model.Invoice;
+import com.model.invoice.Invoice;
 
 import java.util.List;
 import java.util.Map;

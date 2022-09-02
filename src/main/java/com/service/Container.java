@@ -1,6 +1,6 @@
 package com.service;
 
-import com.model.Product;
+import com.model.product.Product;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;

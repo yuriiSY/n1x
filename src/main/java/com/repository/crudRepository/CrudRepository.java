@@ -1,7 +1,5 @@
 package com.repository.crudRepository;
 
-import com.model.Phone;
-
 import java.util.List;
 import java.util.Optional;
 

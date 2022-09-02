@@ -1,5 +1,6 @@
-package com.model;
+package com.model.product;
 
+import com.model.invoice.Invoice;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -26,7 +27,7 @@ public abstract class Product {
     @JoinColumn(name = "invoice_id")
     protected Invoice invoice;
     protected Product(String title, int count, double price) {
-     //   this.id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.count = count;
         this.price = price;

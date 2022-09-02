@@ -1,6 +1,6 @@
 package com.service;
 
-import com.model.Product;
+import com.model.product.Product;
 import com.model.comparator.ProductComporator;
 
 public class Tree {

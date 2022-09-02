@@ -1,8 +1,8 @@
 package com.repository.dbRepository;
 
 import com.config.JDBCConfig;
-import com.model.Manufacturer;
-import com.model.Phone;
+import com.model.product.Manufacturer;
+import com.model.phone.Phone;
 import com.repository.crudRepository.CrudRepository;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.EnumUtils;

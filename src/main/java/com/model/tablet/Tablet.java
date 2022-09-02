@@ -1,5 +1,7 @@
-package com.model;
+package com.model.tablet;
 
+import com.model.product.Manufacturer;
+import com.model.product.Product;
 import lombok.Getter;
 import lombok.Setter;
 
