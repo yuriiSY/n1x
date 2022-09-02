@@ -5,7 +5,7 @@ import com.model.comparator.ProductComporator;
 import com.model.comparator.SortByCount;
 import com.model.comparator.SortByName;
 import com.model.comparator.SortByPrice;
-import com.repository.CrudRepository;
+import com.repository.crudRepository.CrudRepository;
 
 
 import java.util.*;

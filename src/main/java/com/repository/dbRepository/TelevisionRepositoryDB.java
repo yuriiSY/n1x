@@ -2,9 +2,8 @@ package com.repository.dbRepository;
 
 import com.config.JDBCConfig;
 import com.model.Manufacturer;
-import com.model.Tablet;
 import com.model.Television;
-import com.repository.CrudRepository;
+import com.repository.crudRepository.CrudRepository;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.EnumUtils;
 

@@ -2,7 +2,7 @@ package com.repository.dbRepository;
 
 import com.config.JDBCConfig;
 import com.model.*;
-import com.repository.CrudInvoiceRepository;
+import com.repository.crudRepository.CrudInvoiceRepository;
 import lombok.SneakyThrows;
 
 import java.sql.*;
