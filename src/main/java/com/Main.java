@@ -16,6 +16,9 @@ public class Main {
 
     public static void main(String[] args) {
 
+        int a = 1;
+        int b = 0;
+        System.out.println(a/b);
     //    MongoDatabase mongoDatabase = MongoConfig.connect("n1x");
         PhoneMongoRepository phoneMongo = new PhoneMongoRepository();
         InvoiceMongoRepository invoiceMongoRepository = new InvoiceMongoRepository();
