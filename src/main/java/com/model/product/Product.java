@@ -27,7 +27,6 @@ public abstract class Product {
     @JoinColumn(name = "invoice_id")
     protected Invoice invoice;
     protected Product(String title, int count, double price) {
-        this.id = UUID.randomUUID().toString();
         this.title = title;
         this.count = count;
         this.price = price;
