@@ -22,11 +22,12 @@ public class Main {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     public static void main(String[] args) {
-        EntityManager entityManager = HibernateFactoryUtill.getEntityManager();
-        entityManager.isOpen();
-        FlyWayConfig.getInstance().migrate();
-        PhoneRepositoryHibernate phoneRepositoryHibernate = new PhoneRepositoryHibernate();
-        phoneRepositoryHibernate.save(new Phone("asd",22,22,"asd",Manufacturer.APPLE));
+        Tablet.Builder builder = new Tablet.Builder(5, Manufacturer.APPLE);
+        builder.setCount(1);
+        builder.setTitle("Title");
+        builder.setModel("Model");
+        Tablet tablet = builder.build();
+        System.out.println(tablet);
 
 //        final Commands[] values = Commands.values();
 //        boolean exit;
