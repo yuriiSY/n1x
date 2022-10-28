@@ -1,24 +1,20 @@
-package com.EXAMPLE.model;
+package com.example.model;
 
 import lombok.Setter;
 
 @Setter
-public class NotifiableProduct extends Product {
-    protected String channel;
-
-    public String generateAddressForNotification() {
-        return "somerandommail@gmail.com";
-    }
+public class ProductBundle extends NotifiableProduct {
+    protected int amount;
 
     @Override
     public String getBasicInfo() {
-        return "NotifiableProduct{" +
+        return "ProductBundle{" +
                 "channel='" + channel + '\'' +
                 ", id=" + id +
                 ", available=" + available +
                 ", title='" + title + '\'' +
                 ", price=" + price +
+                ", amountInBundle=" + amount +
                 '}';
     }
-
 }

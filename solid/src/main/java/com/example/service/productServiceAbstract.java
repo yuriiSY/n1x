@@ -1,7 +1,7 @@
-package com.EXAMPLE.service;
+package com.example.service;
 
-import com.EXAMPLE.model.Product;
-import com.EXAMPLE.repository.CrudRepository;
+import com.example.model.Product;
+import com.example.repository.CrudRepository;
 
 import java.util.List;
 

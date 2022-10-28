@@ -1,8 +1,8 @@
-package com.EXAMPLE.service;
+package com.example.service;
 
-import com.EXAMPLE.model.NotifiableProduct;
-import com.EXAMPLE.repository.CrudRepository;
-import com.EXAMPLE.repository.ProductRepository;
+import com.example.model.NotifiableProduct;
+import com.example.repository.CrudRepository;
+import com.example.repository.ProductRepository;
 
 public class NotificationService extends productServiceAbstract {
     private static NotificationService instance;

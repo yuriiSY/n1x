@@ -1,7 +1,7 @@
-package com.EXAMPLE.service;
+package com.example.service;
 
-import com.EXAMPLE.repository.CrudRepository;
-import com.EXAMPLE.repository.ProductRepository;
+import com.example.repository.CrudRepository;
+import com.example.repository.ProductRepository;
 
 public class ProductService extends productServiceAbstract {
     private static ProductService instance;

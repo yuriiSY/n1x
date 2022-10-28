@@ -1,11 +1,9 @@
-package com.EXAMPLE;
+package com.example;
 
-import com.EXAMPLE.model.NotifiableProduct;
-import com.EXAMPLE.model.Product;
-import com.EXAMPLE.model.ProductBundle;
-import com.EXAMPLE.service.NotificationService;
-import com.EXAMPLE.service.ProductFactory;
-import com.EXAMPLE.service.ProductService;
+import com.example.model.Product;
+import com.example.service.NotificationService;
+import com.example.service.ProductFactory;
+import com.example.service.ProductService;
 
 import java.util.ArrayList;
 import java.util.List;

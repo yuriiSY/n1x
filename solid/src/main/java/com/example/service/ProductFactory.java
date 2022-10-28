@@ -1,11 +1,9 @@
-package com.EXAMPLE.service;
+package com.example.service;
 
-import com.EXAMPLE.model.NotifiableProduct;
-import com.EXAMPLE.model.Product;
-import com.EXAMPLE.model.ProductBundle;
-import com.EXAMPLE.repository.ProductRepository;
+import com.example.model.NotifiableProduct;
+import com.example.model.Product;
+import com.example.model.ProductBundle;
 
-import java.util.List;
 import java.util.Random;
 
 public class ProductFactory {
