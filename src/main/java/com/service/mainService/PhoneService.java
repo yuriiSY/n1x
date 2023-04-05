@@ -19,7 +19,7 @@ import java.util.function.Function;
 public class PhoneService extends ProductService<Phone> {
     private final PhoneRepositoryHibernate repository;
     private static PhoneService instance;
-@MyAutowired
+    @MyAutowired
     private PhoneService(final PhoneRepositoryHibernate repository) {
         super(repository);
         this.repository = repository;
